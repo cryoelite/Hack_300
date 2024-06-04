@@ -42,5 +42,6 @@ clang++ problem.cpp -o problem -std=c++20 && problem.exe
 END
 echo "compile_and_run.sh created successfully"
 
-echo "New Problem Setup Complete"
+echo "New problem setup complete"
+echo "Open ${problem_dir}problem.cpp and start editing!"
 exit
