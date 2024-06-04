@@ -187,10 +187,17 @@ void start() {
 }
 
 void initialize() {
+  cin >> n;
 
+  arr = vi(n, 0);
+
+  for (int i{}, arg{}; i < n; ++i) {
+    cin >> arg;
+    arr[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() { result = accumulate(arr.begin(), arr.end(), 0); }
 
 void output() {
   cout << result;

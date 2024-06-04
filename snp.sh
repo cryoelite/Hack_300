@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#setup_new_problem.sh
 echo "Setting up a new problem directory"
 echo "Problem No. ?"
 read -r problem_number
@@ -29,18 +29,19 @@ echo "Creating input.txt and output.txt"
 touch "${problem_dir}input.txt"
 touch "${problem_dir}output.txt"
 
-echo "Creating compile_and_run.sh"
-touch "${problem_dir}compile_and_run.sh"
+echo "Creating car.sh (alias for compile_and_run)"
+touch "${problem_dir}car.sh"
 
-echo "Defining compile_and_run.sh"
-cat >>"${problem_dir}compile_and_run.sh" <<'END'
+echo "Defining car.sh"
+cat >>"${problem_dir}car.sh" <<'END'
 #!/bin/bash
+#compile_and_run.sh
 echo "Getting env variable"
 env_var=$(<../../.env)
 export "${env_var?}"=true
-clang++ problem.cpp -o problem -std=c++20 && problem.exe
+clang++ problem.cpp -o problem -std=c++20 && ./problem
 END
-echo "compile_and_run.sh created successfully"
+echo "car.sh created successfully"
 
 echo "New problem setup complete"
 echo "Open ${problem_dir}problem.cpp and start editing!"
