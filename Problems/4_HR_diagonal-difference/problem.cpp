@@ -1,4 +1,4 @@
-// <url>
+// https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -173,7 +173,7 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
+vvi arr{};
 int result{};
 
 void start() {
@@ -186,10 +186,23 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vvi(n, vi(n, 0));
+  for (int i{}; i < n; ++i) {
+    for (int j{}, arg{}; j < n; ++j) {
+      cin >> arg;
+      arr[i][j] = arg;
+    }
+  }
 }
 
-void compute() {  }
+// For a+b+c= d and e+f+g = h, |d-h| can also be written as |a+b+c -(e+f+g)| = |a-e + b-f + c-h|
+void compute() {
+  for (int i{}, a{0}, b{n - 1}; i < n; ++i, ++a, --b) {
+    result += arr[i][a] - arr[i][b];
+  }
+  result = abs(result);
+}
 
 void output() {
   cout << result;

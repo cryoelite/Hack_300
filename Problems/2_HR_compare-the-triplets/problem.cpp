@@ -1,4 +1,4 @@
-// <url>
+// https://www.hackerrank.com/challenges/compare-the-triplets/problem?isFullScreen=true
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -143,6 +143,7 @@ bool isLocalMode() {
 void setupIO() {
   IOS;
 
+  // Use isLocal if C++17 is guaranteed
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -172,9 +173,10 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+constexpr int n{3}; // Given in problem
+array<int, n> a{};
+array<int, n> b{};
+array<int, 2> result{};
 
 void start() {
   // INPUT(testCases);
@@ -186,13 +188,28 @@ void start() {
 }
 
 void initialize() {
-
+  for (int i{}, arg{}; i < n; ++i) {
+    cin >> arg;
+    a[i] = arg;
+  }
+  for (int i{}, arg{}; i < n; ++i) {
+    cin >> arg;
+    b[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}; i < n; ++i) {
+    if (a[i] < b[i]) {
+      ++result[1];
+    } else if (a[i] > b[i]) {
+      ++result[0];
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  cout << result[0] << " " << result[1];
   cout << '\n';
 }
 

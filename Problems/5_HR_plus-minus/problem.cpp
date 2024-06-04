@@ -1,4 +1,4 @@
-// <url>
+// https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen=true
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -174,7 +174,9 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+double positiveR{};
+double negativeR{};
+double zeroR{};
 
 void start() {
   // INPUT(testCases);
@@ -186,13 +188,34 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  for (int i{}, arg{}; i < n; ++i) {
+    cin >> arg;
+    arr[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() {
+  int positives{0};
+  int negatives{0};
+  int zeroes{0};
+  for (int i{}; i < n; ++i) {
+    if (arr[i] > 0) {
+      ++positives;
+    } else if (arr[i] < 0) {
+      ++negatives;
+    } else {
+      ++zeroes;
+    }
+  }
+  positiveR = static_cast<double>(positives) / n;
+  negativeR = static_cast<double>(negatives) / n;
+  zeroR = static_cast<double>(zeroes) / n;
+}
 
 void output() {
-  cout << result;
+  cout << positiveR << '\n' << negativeR << '\n' << zeroR;
   cout << '\n';
 }
 

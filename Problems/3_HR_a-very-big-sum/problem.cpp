@@ -1,4 +1,4 @@
-// <url>
+// https://www.hackerrank.com/challenges/a-very-big-sum/problem?isFullScreen=true
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -143,6 +143,7 @@ bool isLocalMode() {
 void setupIO() {
   IOS;
 
+  // Use isLocal if C++17 is guaranteed
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -186,10 +187,18 @@ void start() {
 }
 
 void initialize() {
-
+  cin>>n;
+  arr=vi(n,0);
+  for(int i{},arg{};i<n;++i){
+    cin>>arg;
+    arr[i]=arg;
+  }
 }
 
-void compute() {  }
+void compute() {  
+  result= accumulate(arr.begin(),arr.end(), 0ll);
+}
+
 
 void output() {
   cout << result;

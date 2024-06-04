@@ -12,6 +12,7 @@
 #include <fstream>
 #include <functional>
 #include <iomanip>
+#include <ios>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -174,7 +175,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+bool result{};
 
 void start() {
   // INPUT(testCases);
@@ -185,14 +186,19 @@ void start() {
   }
 }
 
-void initialize() {
+void initialize() {}
 
+void compute() {
+  int i{1};
+  int x{6};
+  double y{static_cast<double>(i / x) + static_cast<double>(i / x) +
+           static_cast<double>(i / x)};
+  double z{static_cast<double>((i * 3) / x)};
+  result = y == z;
 }
 
-void compute() {  }
-
 void output() {
-  cout << result;
+  cout << boolalpha << result;
   cout << '\n';
 }
 
