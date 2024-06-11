@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/divisible-sum-pairs/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260299007&usg=AOvVaw30KSEctTlWQtk9RrXxMkh7 
 
 // Force Local Mode
 // #define ForceLOCAL

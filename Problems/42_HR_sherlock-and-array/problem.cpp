@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/sherlock-and-array?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260341952&usg=AOvVaw1sRHMbC_pZGwN1V9w_DOZ1 
 
 // Force Local Mode
 // #define ForceLOCAL

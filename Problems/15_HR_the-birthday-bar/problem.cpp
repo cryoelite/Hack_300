@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260296551&usg=AOvVaw1ts_JSfVjbXU5MoQbKeo9S 
 
 // Force Local Mode
 // #define ForceLOCAL

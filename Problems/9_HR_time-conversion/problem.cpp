@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/time-conversion/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260283390&usg=AOvVaw202ffoYI7XhJxEjlyGPQ05 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,10 +43,15 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INT_INPUT(arr, n)                                                  \
-  for (int i{0}, arg{}; i < n; ++i) {                                          \
-    std::cin >> arg;                                                           \
-    arr[i] = arg;                                                              \
+#define ARR_INPUT(arr, x)                                                      \
+  for (int i{0}; i < x; ++i) {                                                 \
+    int y;                                                                     \
+    std::cin >> y;                                                             \
+    arr.push_back(y);                                                          \
+  }
+#define ARR_OUTPUT(arr, sep)                                                   \
+  for (auto &elem : arr) {                                                     \
+    cout << elem << sep;                                                       \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -167,9 +172,9 @@ void output();
 
 int testCases{1};
 
-int n{};
+string inp_time{};
 vi arr{};
-int result{};
+string result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +186,25 @@ void start() {
 }
 
 void initialize() {
-
+    getline(cin, inp_time);
+    cin.ignore(numeric_limits<streamsize>::max());
 }
 
-void compute() {  }
+void compute() {  
+      int hour{stoi(inp_time.substr(0, 2))};
+    if (inp_time[8] == 'A')
+    {
+      hour %= 12;
+      result = (hour / 10 < 1 ? "0" : "") + to_string(hour);
+    }
+    else
+    {
+      hour += 12;
+      hour %= 24;
+      result = hour == 0 ? "12" : to_string(hour);
+    }
+    result += inp_time.substr(2, 6);
+}
 
 void output() {
   cout << result;

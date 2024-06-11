@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/angry-professor?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260316589&usg=AOvVaw2zmi9FU0su6v5yJnMDkpJv 
 
 // Force Local Mode
 // #define ForceLOCAL

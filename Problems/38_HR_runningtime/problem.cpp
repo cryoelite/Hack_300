@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/runningtime/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260336922&usg=AOvVaw2v6O4CI_EsecXdWzGECYYs 
 
 // Force Local Mode
 // #define ForceLOCAL

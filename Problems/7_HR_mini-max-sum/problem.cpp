@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/mini-max-sum/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260279650&usg=AOvVaw0DvAK9Od--5WtULu2alX5M
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,10 +43,15 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INT_INPUT(arr, n)                                                  \
-  for (int i{0}, arg{}; i < n; ++i) {                                          \
-    std::cin >> arg;                                                           \
-    arr[i] = arg;                                                              \
+#define ARR_INPUT(arr, x)                                                      \
+  for (int i{0}; i < x; ++i) {                                                 \
+    int y;                                                                     \
+    std::cin >> y;                                                             \
+    arr.push_back(y);                                                          \
+  }
+#define ARR_OUTPUT(arr, sep)                                                   \
+  for (auto &elem : arr) {                                                     \
+    cout << elem << sep;                                                       \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -167,9 +172,10 @@ void output();
 
 int testCases{1};
 
-int n{};
+constexpr int n{5};
 vi arr{};
-int result{};
+int minSum{};
+int maxSum{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +187,28 @@ void start() {
 }
 
 void initialize() {
-
+  arr = vi(n, 0);
+  for (int i{}, arg{}; i < n; ++i) {
+    cin >> arg;
+    arr[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() {
+  int minElem{arr[0]};
+  int maxElem{arr[0]};
+  int sumElems{0};
+  for (int i{}; i < n; ++i) {
+    minElem = min(minElem, arr[i]);
+    maxElem = max(maxElem, arr[i]);
+    sumElems += arr[i];
+  }
+  minSum = sumElems - maxElem;
+  maxSum = sumElems - minElem;
+}
 
 void output() {
-  cout << result;
+  cout << minSum << " " << maxSum;
   cout << '\n';
 }
 

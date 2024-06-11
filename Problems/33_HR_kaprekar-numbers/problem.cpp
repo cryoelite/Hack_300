@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kaprekar-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260328191&usg=AOvVaw2LyO9mcTo16ulE7sPjdfas 
 
 // Force Local Mode
 // #define ForceLOCAL

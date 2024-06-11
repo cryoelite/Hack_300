@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/closest-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260339434&usg=AOvVaw3bT6m7kSrUSRcaTWhz0Y7s 
 
 // Force Local Mode
 // #define ForceLOCAL

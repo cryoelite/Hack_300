@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-hurdle-race?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260322554&usg=AOvVaw1XBuY-6nCEwzkfsXaFw_VL 
 
 // Force Local Mode
 // #define ForceLOCAL

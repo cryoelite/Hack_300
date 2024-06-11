@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/permutation-equation?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260318562&usg=AOvVaw1tuVDxo1cK-DdLchy4RB6M 
 
 // Force Local Mode
 // #define ForceLOCAL

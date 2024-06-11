@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260292140&usg=AOvVaw0Bd6tGAW3qLmB-WUDeOsZV
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -20,6 +20,7 @@
 #include <set>
 #include <stack>
 #include <stdio.h>
+#include <string.h>
 #include <string>
 #include <string_view>
 #include <tuple>
@@ -167,9 +168,11 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+int x1{};
+int x2{};
+int v1{};
+int v2{};
+string result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +184,17 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> x1 >> v1 >> x2 >> v2;
+  result = "";
 }
 
-void compute() {  }
+void compute() {
+  if (((x1 + v1) % (x2 + v2) == 0) || ((x2 + v2) % (x1 + v1) == 0)) {
+    result = "YES";
+  } else {
+    result = "NO";
+  }
+}
 
 void output() {
   cout << result;

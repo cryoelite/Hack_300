@@ -1,4 +1,4 @@
-// <url>
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cut-the-sticks?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260324473&usg=AOvVaw2gbiz_zdyns3a64ncca8ZK 
 
 // Force Local Mode
 // #define ForceLOCAL
