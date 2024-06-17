@@ -6,6 +6,7 @@
 // Headers
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <complex>
 #include <cstdlib>
 #include <filesystem>
@@ -188,8 +189,23 @@ void initialize() {
   result = "";
 }
 
+// x1+y*v1 = x2+ y*v2, as the series has to be x1+ v1 + v1 + v1 + ... + v1 = x2
+// + v2 + v2 + ... + v2, we need the jumps to be the same so we can say x1 + y
+// times v1 = x2 + y times v2, as the jumps have to be the same, just the value
+// needs to intersect.
+// Now we get y = (x2 - x1)/ (v1 - v2), y is the jump at which they intersect
+// and we can see if y is > 0 then they intersect,
+// if y < 0 then we can't have negative jumps so they never intersect
+// if y > 1 then they intersect
+// if v1 == v2 then they will never meet and y can't be computed because of it.
+
 void compute() {
-  if (((x1 + v1) % (x2 + v2) == 0) || ((x2 + v2) % (x1 + v1) == 0)) {
+  if (x2 - x1 == 0 || v1 - v2 == 0) {
+    result = "NO";
+    return;
+  }
+  double y{static_cast<double>((x2 - x1)) / (v1 - v2)};
+  if (y > 0 && y == floor(y)) { // y > 0 and y is a whole number
     result = "YES";
   } else {
     result = "NO";

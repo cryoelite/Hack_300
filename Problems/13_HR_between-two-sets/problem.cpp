@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/between-two-sets/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260293728&usg=AOvVaw0qlMtmRlGGl2_dBpYKul1J 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/between-two-sets/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260293728&usg=AOvVaw0qlMtmRlGGl2_dBpYKul1J
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,7 +168,9 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
+int m{};
+vi a{};
+vi b{};
 int result{};
 
 void start() {
@@ -181,10 +183,39 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  cin >> m;
+  a = vi(n, 0);
+  b = vi(m, 0);
+  ARR_INT_INPUT(a, n);
+  ARR_INT_INPUT(b, n);
 }
 
-void compute() {  }
+int gcd(int a, int b) {
+  if (b == 0) {
+    return a;
+  }
+  return gcd(b, a % b);
+}
+
+int lcm(int a, int b) { return abs(a * b) / (gcd(a, b)); }
+
+void compute() {
+  int lcm_a{a[0]};
+  int gcd_b{b[0]};
+  for (int i{}; i < n; ++i) {
+    lcm_a = lcm(lcm_a, a[i]);
+  }
+  for (int i{}; i < m; ++i) {
+    gcd_b = gcd(gcd_b, b[i]);
+  }
+
+  for(int i{lcm_a}; i<= gcd_b; i+=lcm_a){
+    if(gcd_b%i==0){
+      result++;
+    }
+  }
+}
 
 void output() {
   cout << result;
