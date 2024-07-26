@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/grading/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260285229&usg=AOvVaw03ejNE5lMcZOdNe9kL9Ly1
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/grading/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260285229&usg=AOvVaw03ejNE5lMcZOdNe9kL9Ly1 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-vi results{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,29 +181,14 @@ void start() {
 }
 
 void initialize() {
-  cin >> n;
-  arr = vi(n, 0);
-  results = vi(n, 0);
-  ARR_INT_INPUT(arr, n);
+
 }
 
-void compute() {
-  for (int i{}, diffy{0}; i < n; ++i, diffy = 0) {
-    diffy = 5 - (arr[i] %
-                 5); 
-    if (arr[i] < 38 || diffy >= 3) { // if difference between next multiple of 5
-                                     // and grade is <3, i.e., 5-difference is >=3 then get the same number
-      results[i] = arr[i];
-    } else {
-      results[i] = arr[i] + diffy;
-    }
-  }
-}
+void compute() {  }
 
 void output() {
-  for (int i{}; i < n; ++i) {
-    cout << results[i] << "\n";
-  }
+  cout << result;
+  cout << '\n';
 }
 
 } // namespace Solution

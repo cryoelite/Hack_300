@@ -1,0 +1,1 @@
+Simply sum them using a loop

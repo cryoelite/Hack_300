@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/compare-the-triplets/problem?isFullScreen=true
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/compare-the-triplets/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260271455&usg=AOvVaw3XXbeLq2EdOC4RHA-kFD2H
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -143,7 +138,6 @@ bool isLocalMode() {
 void setupIO() {
   IOS;
 
-  // Use isLocal if C++17 is guaranteed
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -173,9 +167,9 @@ void output();
 
 int testCases{1};
 
-constexpr int n{3}; // Given in problem
-array<int, n> a{};
-array<int, n> b{};
+constexpr int n{3};
+array<int, 3> alice{};
+array<int, 3> bob{};
 array<int, 2> result{};
 
 void start() {
@@ -188,22 +182,24 @@ void start() {
 }
 
 void initialize() {
-  for (int i{}, arg{}; i < n; ++i) {
+  result.fill(0);
+  int arg{};
+  for (int i{}; i < n; ++i) {
     cin >> arg;
-    a[i] = arg;
+    alice[i] = arg;
   }
-  for (int i{}, arg{}; i < n; ++i) {
+  for (int i{}; i < n; ++i) {
     cin >> arg;
-    b[i] = arg;
+    bob[i] = arg;
   }
 }
 
 void compute() {
   for (int i{}; i < n; ++i) {
-    if (a[i] < b[i]) {
-      ++result[1];
-    } else if (a[i] > b[i]) {
-      ++result[0];
+    if (alice[i] > bob[i]) {
+      result[0]++;
+    } else if (alice[i] < bob[i]) {
+      result[1]++;
     }
   }
 }

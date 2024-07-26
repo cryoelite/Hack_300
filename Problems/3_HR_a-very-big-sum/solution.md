@@ -1,0 +1,2 @@
+- Use long long int for storing the numbers in the array, then for the data type to store their addition.
+- std::accumulate doesn't work because it performs int addition and returns an int.

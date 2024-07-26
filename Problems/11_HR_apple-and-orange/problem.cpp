@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260290626&usg=AOvVaw1TQ4qhsE37gnSUpCkKqZxN
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260290626&usg=AOvVaw1TQ4qhsE37gnSUpCkKqZxN 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,30 +167,9 @@ void output();
 
 int testCases{1};
 
-/// starting point
-int s{};
-
-/// ending point
-int t{};
-
-/// a tree point
-int a{};
-
-/// b tree point
-int b{};
-
-/// no. of apples
-int m{};
-
-/// no. of oranges
 int n{};
-
-vi apples{};
-
-vi oranges{};
-
-int apples_fall{};
-int oranges_fall{};
+vi arr{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -202,40 +181,14 @@ void start() {
 }
 
 void initialize() {
-  cin >> s;
-  cin >> t;
 
-  cin >> a;
-  cin >> b;
-
-  cin >> m;
-  cin >> n;
-
-  apples = vi(m, 0);
-  oranges = vi(n, 0);
-
-  apples_fall = 0;
-  oranges_fall = 0;
-  ARR_INT_INPUT(apples, m);
-  ARR_INT_INPUT(oranges, n);
 }
 
-void compute() {
-  for (int i{}; i < m; ++i) {
-    if (apples[i] + a >= s && apples[i] + a <= t) {
-      apples_fall += 1;
-    }
-  }
-  for (int i{}; i < n; ++i) {
-    if (oranges[i] + b >= s && oranges[i] + b <= t) {
-      oranges_fall += 1;
-    }
-  }
-}
+void compute() {  }
 
 void output() {
-  cout << apples_fall << '\n';
-  cout << oranges_fall << '\n';
+  cout << result;
+  cout << '\n';
 }
 
 } // namespace Solution

@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen=true
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/diagonal-difference/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260274785&usg=AOvVaw3su4Sx5rnNmQICw-tvqbjM
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -186,22 +181,26 @@ void start() {
 }
 
 void initialize() {
-  cin >> n;
+  result = 0;
+  cin>>n;
   arr = vvi(n, vi(n, 0));
+  int arg{};
   for (int i{}; i < n; ++i) {
-    for (int j{}, arg{}; j < n; ++j) {
+    for (int j{}; j < n; ++j) {
       cin >> arg;
       arr[i][j] = arg;
     }
   }
 }
 
-// For a+b+c= d and e+f+g = h, |d-h| can also be written as |a+b+c -(e+f+g)| = |a-e + b-f + c-h|
 void compute() {
-  for (int i{}, a{0}, b{n - 1}; i < n; ++i, ++a, --b) {
-    result += arr[i][a] - arr[i][b];
+  int diagsum_1{0};
+  int diagsum_2{0};
+  for (int i{}, diag_1{0}, diag_2{n - 1}; i < n; ++i, ++diag_1, --diag_2) {
+    diagsum_1 += arr[i][diag_1];
+    diagsum_2 += arr[i][diag_2];
   }
-  result = abs(result);
+  result = abs(diagsum_1-diagsum_2);
 }
 
 void output() {

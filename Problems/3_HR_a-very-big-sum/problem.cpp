@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/a-very-big-sum/problem?isFullScreen=true
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/a-very-big-sum/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260273352&usg=AOvVaw3emiQAi70t_UnZ9gTBxzx3
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -143,7 +138,6 @@ bool isLocalMode() {
 void setupIO() {
   IOS;
 
-  // Use isLocal if C++17 is guaranteed
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -187,18 +181,18 @@ void start() {
 }
 
 void initialize() {
-  cin>>n;
-  arr=vi(n,0);
-  for(int i{},arg{};i<n;++i){
-    cin>>arg;
-    arr[i]=arg;
+  result = 0;
+  cin >> n;
+  arr = vi(n, 0);
+
+  ARR_INT_INPUT(arr, n)
+}
+
+void compute() { 
+  for(int i{};i<n;++i){
+    result+=arr[i];
   }
 }
-
-void compute() {  
-  result= accumulate(arr.begin(),arr.end(), 0ll);
-}
-
 
 void output() {
   cout << result;

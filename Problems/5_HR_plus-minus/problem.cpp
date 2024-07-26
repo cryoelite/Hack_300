@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen=true
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260276432&usg=AOvVaw3ymxobnBJdkvOd4Waqf4FW 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -174,9 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-double positiveR{};
-double negativeR{};
-double zeroR{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -188,34 +181,13 @@ void start() {
 }
 
 void initialize() {
-  cin >> n;
-  arr = vi(n, 0);
-  for (int i{}, arg{}; i < n; ++i) {
-    cin >> arg;
-    arr[i] = arg;
-  }
+
 }
 
-void compute() {
-  int positives{0};
-  int negatives{0};
-  int zeroes{0};
-  for (int i{}; i < n; ++i) {
-    if (arr[i] > 0) {
-      ++positives;
-    } else if (arr[i] < 0) {
-      ++negatives;
-    } else {
-      ++zeroes;
-    }
-  }
-  positiveR = static_cast<double>(positives) / n;
-  negativeR = static_cast<double>(negatives) / n;
-  zeroR = static_cast<double>(zeroes) / n;
-}
+void compute() {  }
 
 void output() {
-  cout << positiveR << '\n' << negativeR << '\n' << zeroR;
+  cout << result;
   cout << '\n';
 }
 

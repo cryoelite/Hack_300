@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/staircase/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260277758&usg=AOvVaw3aTRQej6bUnsmn4a0xGbgS 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/staircase/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260277758&usg=AOvVaw3aTRQej6bUnsmn4a0xGbgS 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -173,6 +168,8 @@ void output();
 int testCases{1};
 
 int n{};
+vi arr{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -184,22 +181,14 @@ void start() {
 }
 
 void initialize() {
-  cin>>n;
+
 }
 
 void compute() {  }
 
 void output() {
-  for(int i{},spaces{n-1};i<n; ++i,--spaces){
-    for(int j{};j<spaces;++j){
-      cout<<" ";
-    }
-    for(int j{};j<i+1;++j){
-      cout<<"#";
-    }
-    cout<<"\n";
-  }
-
+  cout << result;
+  cout << '\n';
 }
 
 } // namespace Solution

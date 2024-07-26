@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/birthday-cake-candles/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260281786&usg=AOvVaw3Mxu74S82t3axQmhtH1mkC
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/birthday-cake-candles/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260281786&usg=AOvVaw3Mxu74S82t3axQmhtH1mkC 
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -43,15 +43,10 @@ template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 }
-#define ARR_INPUT(arr, x)                                                      \
-  for (int i{0}; i < x; ++i) {                                                 \
-    int y;                                                                     \
-    std::cin >> y;                                                             \
-    arr.push_back(y);                                                          \
-  }
-#define ARR_OUTPUT(arr, sep)                                                   \
-  for (auto &elem : arr) {                                                     \
-    cout << elem << sep;                                                       \
+#define ARR_INT_INPUT(arr, n)                                                  \
+  for (int i{0}, arg{}; i < n; ++i) {                                          \
+    std::cin >> arg;                                                           \
+    arr[i] = arg;                                                              \
   }
 
 #define cast(i) static_cast<int>(i)
@@ -186,27 +181,10 @@ void start() {
 }
 
 void initialize() {
-  cin >> n;
-  arr = vi(n, 0);
-  for (int i{}, arg{}; i < n; ++i) {
-    cin >> arg;
-    arr[i] = arg;
-  }
+
 }
 
-void compute() {
-  int max_elem{arr[0]};
-  int count{0};
-  for (int i{}; i < n; ++i) {
-    if (arr[i] > max_elem) {
-      max_elem = arr[i];
-      count = 1;
-    } else if (arr[i] == max_elem) {
-      ++count;
-    }
-  }
-  result = count;
-}
+void compute() {  }
 
 void output() {
   cout << result;
