@@ -1,1 +1,1 @@
-Simply sum them using a loop
+- Simply sum them using a loop

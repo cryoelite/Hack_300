@@ -1,1 +1,1 @@
-Simply compare the elements of the 2 arrays.
+- Simply compare the elements of the 2 arrays.
