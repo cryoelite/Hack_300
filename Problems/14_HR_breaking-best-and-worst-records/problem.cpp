@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260295307&usg=AOvVaw3B6na38v-eKaOw3NLrIslt 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260295307&usg=AOvVaw3B6na38v-eKaOw3NLrIslt
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -168,8 +169,8 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
-int result{};
+vi scores{};
+array<int, 2> scores_broken{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +182,28 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  scores = vi(n, 0);
+  scores_broken = {0, 0};
+  ARR_INT_INPUT(scores, n);
 }
 
-void compute() {  }
+void compute() {
+  int min_score{scores[0]};
+  int max_score{scores[0]};
+  for (int i{1}; i < n; ++i) {
+    if (scores[i] < min_score) {
+      min_score=scores[i];
+      ++scores_broken[1];
+    } else if (scores[i] > max_score) {
+      max_score= scores[i];
+      ++scores_broken[0];
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  cout << scores_broken[0] << " " << scores_broken[1];
   cout << '\n';
 }
 

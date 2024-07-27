@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/grading/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260285229&usg=AOvVaw03ejNE5lMcZOdNe9kL9Ly1 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/grading/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260285229&usg=AOvVaw03ejNE5lMcZOdNe9kL9Ly1
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+vi result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,14 +181,26 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  result = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}; i < n; ++i) {
+    if (arr[i] < 38 || arr[i] % 5 < 3) {
+      result[i] = arr[i];
+    } else {
+      result[i] = arr[i] + (5 - (arr[i] % 5));
+    }
+  }
+}
 
 void output() {
-  cout << result;
-  cout << '\n';
+  for (int i{}; i < n; ++i) {
+    cout << result[i] << '\n';
+  }
 }
 
 } // namespace Solution

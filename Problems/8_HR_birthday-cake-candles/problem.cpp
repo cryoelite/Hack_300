@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/birthday-cake-candles/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260281786&usg=AOvVaw3Mxu74S82t3axQmhtH1mkC 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/birthday-cake-candles/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260281786&usg=AOvVaw3Mxu74S82t3axQmhtH1mkC
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -181,10 +182,24 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int max_elem{numeric_limits<int>::min()};
+  int max_elem_count{0};
+  for (int i{}; i < n; ++i) {
+    if (arr[i] > max_elem) {
+      max_elem_count = 1;
+      max_elem = arr[i];
+    } else if (arr[i] == max_elem) {
+      ++max_elem_count;
+    }
+  }
+  result = max_elem_count;
+}
 
 void output() {
   cout << result;

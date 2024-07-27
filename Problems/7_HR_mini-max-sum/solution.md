@@ -1,0 +1,1 @@
+- Find the minimum elem and the maximum elem, and subtract them from the sum to get sum of elements of array without the maximum element, so the minimum sum, and then without the minimum element, so the maximum sum.

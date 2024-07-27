@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260290626&usg=AOvVaw1TQ4qhsE37gnSUpCkKqZxN 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/apple-and-orange/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260290626&usg=AOvVaw1TQ4qhsE37gnSUpCkKqZxN
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,9 +167,17 @@ void output();
 
 int testCases{1};
 
+int s{};
+int t{};
+int a{};
+int b{};
+int m{};
 int n{};
-vi arr{};
-int result{};
+vi apples{};
+vi oranges{};
+
+int apples_fallen{};
+int oranges_fallen{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +189,32 @@ void start() {
 }
 
 void initialize() {
-
+  apples_fallen = 0;
+  oranges_fallen = 0;
+  cin >> s >> t;
+  cin >> a >> b;
+  cin >> m >> n;
+  apples = vi(m, 0);
+  oranges = vi(n, 0);
+  ARR_INT_INPUT(apples, m);
+  ARR_INT_INPUT(oranges, n);
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}; i < m; ++i) {
+    if (apples[i] + a >= s && apples[i] + a <= t) {
+      ++apples_fallen;
+    }
+  }
+  for (int i{}; i < n; ++i) {
+    if (oranges[i] + b >= s && oranges[i] + b <= t) {
+      ++oranges_fallen;
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  cout << apples_fallen << '\n' << oranges_fallen;
   cout << '\n';
 }
 

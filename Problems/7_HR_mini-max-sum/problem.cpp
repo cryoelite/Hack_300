@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/mini-max-sum/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260279650&usg=AOvVaw0DvAK9Od--5WtULu2alX5M 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/mini-max-sum/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260279650&usg=AOvVaw0DvAK9Od--5WtULu2alX5M
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -167,9 +168,10 @@ void output();
 
 int testCases{1};
 
-int n{};
+constexpr int n{5};
 vi arr{};
-int result{};
+int min_result{};
+int max_result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +183,31 @@ void start() {
 }
 
 void initialize() {
-
+  min_result = 0;
+  max_result = 0;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int min_elem{numeric_limits<int>::max()};
+  int max_elem{numeric_limits<int>::min()};
+  int sum{0};
+  for (int i{}; i < n; ++i) {
+    if (arr[i] < min_elem) {
+      min_elem = arr[i];
+    }
+    if (arr[i] > max_elem) {
+      max_elem = arr[i];
+    }
+    sum += arr[i];
+  }
+  min_result = sum - max_elem;
+  max_result = sum - min_elem;
+}
 
 void output() {
-  cout << result;
+  cout << min_result << " " << max_result;
   cout << '\n';
 }
 

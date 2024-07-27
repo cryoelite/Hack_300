@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/staircase/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260277758&usg=AOvVaw3aTRQej6bUnsmn4a0xGbgS 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/staircase/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260277758&usg=AOvVaw3aTRQej6bUnsmn4a0xGbgS
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,8 +168,6 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
-int result{};
 
 void start() {
   // INPUT(testCases);
@@ -180,15 +178,21 @@ void start() {
   }
 }
 
-void initialize() {
+void initialize() { cin >> n; }
 
-}
-
-void compute() {  }
+void compute() {}
 
 void output() {
-  cout << result;
-  cout << '\n';
+  for (int i{}; i < n; ++i) {
+    for (int j{}; j < n; ++j) {
+      if (j < (n - i - 1)) {
+        cout << " ";
+      } else {
+        cout << "#";
+      }
+    }
+    cout << '\n';
+  }
 }
 
 } // namespace Solution

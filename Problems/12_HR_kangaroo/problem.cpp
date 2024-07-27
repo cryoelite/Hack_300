@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260292140&usg=AOvVaw0Bd6tGAW3qLmB-WUDeOsZV 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260292140&usg=AOvVaw0Bd6tGAW3qLmB-WUDeOsZV
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,9 +167,11 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+int x1{};
+int v1{};
+int x2{};
+int v2{};
+string result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +183,26 @@ void start() {
 }
 
 void initialize() {
-
+  result = string{};
+  cin >> x1 >> v1 >> x2 >> v2;
 }
 
-void compute() {  }
+void compute() {
+  if (x1 == x2) {
+    result = "YES";
+    return;
+  }
+  if (v1 == v2) { // and x1!=x2 as checked above
+    result = "NO";
+    return;
+  }
+  double y{static_cast<double>(x2 - x1) / (v1 - v2)};
+  if (y > 0 && floor(y) == y) {
+    result = "YES";
+  } else {
+    result = "NO";
+  }
+}
 
 void output() {
   cout << result;

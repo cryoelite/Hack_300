@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260276432&usg=AOvVaw3ymxobnBJdkvOd4Waqf4FW 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260276432&usg=AOvVaw3ymxobnBJdkvOd4Waqf4FW
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,7 +169,9 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+double pos{};
+double neg{};
+double zero{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +183,37 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  int arg{};
+  arr = vi(n, 0);
+  for (int i{}; i < n; ++i) {
+    cin >> arg;
+    arr[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() {
+  int posNums{0};
+  int negNums{0};
+  int zeroNums{0};
+
+  for (int i{}; i < n; ++i) {
+    if (arr[i] < 0) {
+      ++negNums;
+    } else if (arr[i] > 0) {
+      ++posNums;
+    } else {
+      ++zeroNums;
+    }
+  }
+
+  pos = static_cast<double>(posNums) / n;
+  neg = static_cast<double>(negNums) / n;
+  zero = static_cast<double>(zeroNums) / n;
+}
 
 void output() {
-  cout << result;
+  cout << pos << '\n' << neg << '\n' << zero;
   cout << '\n';
 }
 
