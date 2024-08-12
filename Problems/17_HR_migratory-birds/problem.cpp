@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260301155&usg=AOvVaw3NFy0ur40IuBfESIGksIf0 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260301155&usg=AOvVaw3NFy0ur40IuBfESIGksIf0
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -169,7 +170,8 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+array<int, 6> types{};
+pii result{}; // first is id, second is value
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +183,28 @@ void start() {
 }
 
 void initialize() {
-
+  result = {0, 0};
+  cin >> n;
+  arr = vi(n, 0);
+  types = {0, 0, 0, 0, 0, 0};
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}; i < n; ++i) {
+    ++types[arr[i]];
+  }
+
+  for (int i{5}; i >= 0; --i) {
+    if (types[i] >= result.second) {
+      result.first = i;
+      result.second = types[i];
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  cout << result.first;
   cout << '\n';
 }
 

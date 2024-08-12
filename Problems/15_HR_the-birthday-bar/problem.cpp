@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260296551&usg=AOvVaw1ts_JSfVjbXU5MoQbKeo9S 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260296551&usg=AOvVaw1ts_JSfVjbXU5MoQbKeo9S
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,7 +168,9 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
+vi s{};
+int d{};
+int m{};
 int result{};
 
 void start() {
@@ -181,10 +183,25 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  s = vi(n, 0);
+  ARR_INT_INPUT(s, n);
+  cin >> d >> m;
 }
 
-void compute() {  }
+void compute() {
+  int rolling_sum{0};
+
+  for (int i{0}; i < n; ++i) {
+    rolling_sum += s[i];
+    if (i >= m) {
+      rolling_sum -= s[i - m];
+    }
+    if (i >= m - 1 && rolling_sum == d) {
+      ++result;
+    }
+  }
+}
 
 void output() {
   cout << result;

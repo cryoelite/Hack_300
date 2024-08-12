@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/day-of-the-programmer/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260302857&usg=AOvVaw1HJ50AZMPlfFR5oNtWpePh 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/day-of-the-programmer/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260302857&usg=AOvVaw1HJ50AZMPlfFR5oNtWpePh
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,9 +167,10 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+constexpr int day_to_find{256};
+int month_days[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+int year{};
+string result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +182,26 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> year;
+  result = "";
 }
+bool isleap() {
+  if (year < 1918) {
+    return 1918 % 4 == 0;
+  } else {
+    return 1918 % 4 == 0 || 1918 % 400 == 0;
+  }
+}
+void compute() {
+  if(year==1918){
+    month_days[1]=14;
+  } else if (isleap()){
+    month_days[1]+=1;
 
-void compute() {  }
+  } else {
+
+  }
+}
 
 void output() {
   cout << result;

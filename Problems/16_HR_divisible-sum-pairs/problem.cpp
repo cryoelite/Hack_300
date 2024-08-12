@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/divisible-sum-pairs/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260299007&usg=AOvVaw30KSEctTlWQtk9RrXxMkh7 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/divisible-sum-pairs/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260299007&usg=AOvVaw30KSEctTlWQtk9RrXxMkh7
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,6 +168,7 @@ void output();
 int testCases{1};
 
 int n{};
+int k{};
 vi arr{};
 int result{};
 
@@ -181,10 +182,18 @@ void start() {
 }
 
 void initialize() {
-
+  result = 0;
+  cin >> n >> k;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+//2 pointer
+void compute() {
+  for (int i{}; i < n; ++i) {
+    
+  }
+}
 
 void output() {
   cout << result;
