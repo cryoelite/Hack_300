@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -180,27 +181,49 @@ void start() {
     output();
   }
 }
-
+bool isleap(int year) {
+  if (year < 1918) {
+    return year % 4 == 0;
+  } else {
+    return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+  }
+}
 void initialize() {
   cin >> year;
   result = "";
-}
-bool isleap() {
-  if (year < 1918) {
-    return 1918 % 4 == 0;
+  if (year == 1918) {
+    month_days[1] = 15;
+  } else if (isleap(year)) {
+    month_days[1] = 29;
   } else {
-    return 1918 % 4 == 0 || 1918 % 400 == 0;
+    month_days[1] = 28;
   }
 }
+
 void compute() {
-  if(year==1918){
-    month_days[1]=14;
-  } else if (isleap()){
-    month_days[1]+=1;
-
-  } else {
-
+  int days{0};
+  string day{};
+  string month{};
+  for (int i{}; i < 12; ++i) {
+    if (month_days[i] + days >= day_to_find) {
+      if (year == 1918 && i == 1) {
+        day = to_string(day_to_find - days + 14);
+      } else {
+        day = to_string(day_to_find - days);
+      }
+      month = to_string(i + 1);
+      break;
+    }
+    days += month_days[i];
   }
+
+  if (day.length() == 1) {
+    day = "0" + day;
+  }
+  if (month.length() == 1) {
+    month = "0" + month;
+  }
+  result = day + "." + month + "." + to_string(year);
 }
 
 void output() {

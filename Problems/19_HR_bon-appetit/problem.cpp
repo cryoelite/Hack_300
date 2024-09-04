@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/bon-appetit/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260304249&usg=AOvVaw30WcC5hUHtnkSL6REsR34i 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/bon-appetit/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260304249&usg=AOvVaw30WcC5hUHtnkSL6REsR34i
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,8 +168,10 @@ void output();
 int testCases{1};
 
 int n{};
+int k{};
 vi arr{};
-int result{};
+int b{};
+string result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +183,20 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n >> k;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
+  cin >> b;
 }
 
-void compute() {  }
+void compute() {
+  int bill_ana{(accumulate(arr.begin(), arr.end(), 0) - arr[k]) / 2};
+  if (bill_ana == b) {
+    result = "Bon Appetit";
+  } else {
+    result = to_string(b - bill_ana);
+  }
+}
 
 void output() {
   cout << result;
