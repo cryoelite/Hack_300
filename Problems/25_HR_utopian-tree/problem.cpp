@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/utopian-tree?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260312702&usg=AOvVaw0sw3cokBmb9IRtyJvza1Kp 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/utopian-tree?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260312702&usg=AOvVaw0sw3cokBmb9IRtyJvza1Kp
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -165,14 +165,13 @@ void initialize();
 void compute();
 void output();
 
-int testCases{1};
+int testCases{0};
 
 int n{};
-vi arr{};
 int result{};
 
 void start() {
-  // INPUT(testCases);
+  INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
@@ -181,10 +180,18 @@ void start() {
 }
 
 void initialize() {
-
+  result = 0;
+  cin >> n;
 }
 
-void compute() {  }
+void compute() {
+  n=n+1;
+  if (n % 2 == 0) {
+    result = pow(2, (n / 2) + 1) - 2;
+  } else {
+    result = pow(2, ((n + 1) / 2)) - 1;
+  }
+}
 
 void output() {
   cout << result;

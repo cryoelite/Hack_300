@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/electronics-shop?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260306933&usg=AOvVaw1K5UsGkKfY-huOUIyNf9lR 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/electronics-shop?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260306933&usg=AOvVaw1K5UsGkKfY-huOUIyNf9lR
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,7 +168,10 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
+int m{};
+int b{};
+vi kbs{};
+vi ds{};
 int result{};
 
 void start() {
@@ -181,10 +184,29 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> b >> n >> m;
+  kbs = vi(n, 0);
+  ds = vi(m, 0);
+  ARR_INT_INPUT(kbs, n);
+  ARR_INT_INPUT(ds, m);
+  result = -1;
 }
 
-void compute() {  }
+void compute() {
+  sort(kbs.begin(), kbs.end());
+  sort(ds.begin(), ds.end());
+
+  int ptr1{n - 1};
+  int ptr2{0};
+  while (ptr1 >= 0 && ptr2 <= m - 1) {
+    if(kbs[ptr1] + ds[ptr2] <=b) {
+      result=max(result, kbs[ptr1] + ds[ptr2]);
+      ++ptr2;
+    } else {
+      --ptr1;
+    }
+  }
+}
 
 void output() {
   cout << result;

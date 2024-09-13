@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/designer-pdf-viewer?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260311248&usg=AOvVaw2zEOPWAPOHGcRvDv-lDqZy 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/designer-pdf-viewer?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260311248&usg=AOvVaw2zEOPWAPOHGcRvDv-lDqZy
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -167,8 +168,8 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
+array<int, 26> sizes{};
+string word{};
 int result{};
 
 void start() {
@@ -181,10 +182,19 @@ void start() {
 }
 
 void initialize() {
-
+  ARR_INT_INPUT(sizes, 26);
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  getline(cin, word);
 }
 
-void compute() {  }
+void compute() {
+  int max_height{1};
+  int letters{static_cast<int>(word.size())};
+  for (int i{}; i < letters; ++i) {
+    max_height = max(max_height, sizes[static_cast<int>(word[i]) - 97]);
+  }
+  result = max_height * letters;
+}
 
 void output() {
   cout << result;

@@ -1,0 +1,1 @@
+- Calculate the distance between x and z and y and z, the smaller one reaches first. If equal, then mouse wins.

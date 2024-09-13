@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/picking-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260309958&usg=AOvVaw3vWE35Z66T_6WtHox0IM1h 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/picking-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260309958&usg=AOvVaw3vWE35Z66T_6WtHox0IM1h
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -170,6 +170,7 @@ int testCases{1};
 int n{};
 vi arr{};
 int result{};
+array<int, 100> f{}; //frequency array
 
 void start() {
   // INPUT(testCases);
@@ -181,10 +182,20 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  result = 1;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  for(int i{};i<n;++i){
+    f[arr[i]]++;
+  }
+  for(int i{};i<100;++i){
+    result=max(result, f[i-1]+f[i]);
+  }
+}
 
 void output() {
   cout << result;

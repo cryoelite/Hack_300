@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cats-and-a-mouse?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260308440&usg=AOvVaw1g2hBNza_4_wsQyjdstFl6 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cats-and-a-mouse?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260308440&usg=AOvVaw1g2hBNza_4_wsQyjdstFl6
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -165,14 +165,15 @@ void initialize();
 void compute();
 void output();
 
-int testCases{1};
+int testCases{};
 
-int n{};
-vi arr{};
-int result{};
+int x{};
+int y{};
+int z{};
+string result{};
 
 void start() {
-  // INPUT(testCases);
+  INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
@@ -181,10 +182,23 @@ void start() {
 }
 
 void initialize() {
-
+  cin>>x>>y>>z;
+  result="";
 }
 
-void compute() {  }
+void compute() {
+  int x_dist{abs(z-x)};
+  int y_dist{abs(z-y)};
+  if(y_dist==x_dist){
+    result="Mouse C";
+  }
+  else if(y_dist<x_dist){
+    result="Cat B";
+  } else{
+    result="Cat A";
+  }
+
+}
 
 void output() {
   cout << result;
