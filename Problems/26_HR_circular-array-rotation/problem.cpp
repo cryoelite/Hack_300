@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/circular-array-rotation?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260314637&usg=AOvVaw1XWZUY8802KH4iCUPdclps 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/circular-array-rotation?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260314637&usg=AOvVaw1XWZUY8802KH4iCUPdclps
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -163,30 +163,44 @@ using namespace std;
 void start();
 void initialize();
 void compute();
-void output();
+void output(int); //--CHANGED FROM TEMPLATE
 
 int testCases{1};
 
 int n{};
+int k{};
+int queries{};
 vi arr{};
-int result{};
 
 void start() {
   // INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
-    output();
+    //  output();                                             --CHANGED FROM
+    //  TEMPLATE
   }
 }
 
 void initialize() {
-
+  cin >> n >> k >> queries;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int result{};
+  int query{};
+  for (int i{}; i < queries; ++i) {
+    cin >> query;
+    int x = query - k;
+    result = arr[((x % n) + n) % n];
 
-void output() {
+    output(result);
+  }
+}
+
+void output(int result) { //--CHANGED FROM TEMPLATE
   cout << result;
   cout << '\n';
 }
