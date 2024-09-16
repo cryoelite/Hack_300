@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/permutation-equation?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260318562&usg=AOvVaw1tuVDxo1cK-DdLchy4RB6M 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/permutation-equation?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260318562&usg=AOvVaw1tuVDxo1cK-DdLchy4RB6M
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+vi result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,14 +181,31 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n + 1, 0); // 1 indexed
+  result = vi(n + 1, 0);
+  int arg{};
+  for (int i{1}; i <= n; ++i) {
+    cin >> arg;
+    arr[i] = arg;
+  }
 }
 
-void compute() {  }
+void compute() {
+  int y{};
+  int x{};
+  for (int i{1}; i <= n; ++i) {
+    y = arr[i];
+    x = arr[arr[y]];
+
+    result[x] = y;
+  }
+}
 
 void output() {
-  cout << result;
-  cout << '\n';
+  for (int i{1}; i <= n; ++i) {
+    cout << result[i] << '\n';
+  }
 }
 
 } // namespace Solution

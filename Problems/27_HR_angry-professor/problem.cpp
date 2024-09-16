@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/angry-professor?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260316589&usg=AOvVaw2zmi9FU0su6v5yJnMDkpJv 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/angry-professor?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260316589&usg=AOvVaw2zmi9FU0su6v5yJnMDkpJv
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -165,14 +165,15 @@ void initialize();
 void compute();
 void output();
 
-int testCases{1};
+int testCases{};
 
 int n{};
+int k{};
 vi arr{};
-int result{};
+string result{};
 
 void start() {
-  // INPUT(testCases);
+  INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
@@ -181,10 +182,23 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n >> k;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int on_time_counter{0};
+  for (int i{}; i < n; ++i) {
+    on_time_counter += arr[i] <= 0 ? 1 : 0;
+  }
+  if (on_time_counter < k) {
+    result = "YES"; //Cancel Class
+  } else {
+    result = "NO";
+  }
+
+}
 
 void output() {
   cout << result;
