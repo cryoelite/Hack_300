@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-hurdle-race?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260322554&usg=AOvVaw1XBuY-6nCEwzkfsXaFw_VL 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/the-hurdle-race?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260322554&usg=AOvVaw1XBuY-6nCEwzkfsXaFw_VL
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,6 +168,7 @@ void output();
 int testCases{1};
 
 int n{};
+int k{};
 vi arr{};
 int result{};
 
@@ -181,10 +182,20 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n >> k;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int max_height{0};
+  for(int i{};i<n;++i){
+    max_height=max(max_height,arr[i]);
+  }
+  if(k<max_height){
+    result=max_height-k;
+  }
+}
 
 void output() {
   cout << result;

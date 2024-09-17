@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/find-digits?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260320526&usg=AOvVaw3-rVqPpEFvyUvdOEyXKb-S 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/find-digits?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260320526&usg=AOvVaw3-rVqPpEFvyUvdOEyXKb-S
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -168,11 +168,10 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
 int result{};
 
 void start() {
-  // INPUT(testCases);
+  INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
@@ -181,10 +180,21 @@ void start() {
 }
 
 void initialize() {
-
+  result = 0;
+  cin >> n;
 }
 
-void compute() {  }
+void compute() {
+  int n_copy{n};
+  int digit{0};
+  while (n > 0) {
+    digit = n % 10;
+    if (digit != 0) {
+      result += n_copy % digit == 0 ? 1 : 0;
+    }
+    n /= 10;
+  }
+}
 
 void output() {
   cout << result;

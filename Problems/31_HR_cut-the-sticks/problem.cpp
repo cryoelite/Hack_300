@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cut-the-sticks?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260324473&usg=AOvVaw2gbiz_zdyns3a64ncca8ZK 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cut-the-sticks?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260324473&usg=AOvVaw2gbiz_zdyns3a64ncca8ZK
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+vi result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,14 +181,35 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  result = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  sort(arr.begin(), arr.end());
+  int prev_elem{};
+  int similar_elems{0};
+  int arr_size{n};
+  int index_result{0};
+  for (int i{}; i < n; ++i) {
+    if (prev_elem != arr[i]) {
+      arr_size = arr_size - similar_elems;
+      result[index_result] = (arr_size);
+      similar_elems = 1;
+      ++index_result;
+    } else {
+      ++similar_elems;
+    }
+    prev_elem = arr[i];
+  }
+}
 
 void output() {
-  cout << result;
-  cout << '\n';
+  for (int i{}, elem{result[0]}; i < n && elem != 0; ++i, elem = result[i]) {
+    cout << elem << '\n';
+  }
 }
 
 } // namespace Solution
