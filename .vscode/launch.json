@@ -5,10 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
+            "name": "Run File",
             "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build using Clang",
+            "preLaunchTask": "Build using Clang (Release)",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "envFile": "${fileDirname}/../../.env",
+            "cwd":"${fileDirname}"
+        },
+        {
+            "name": "Debug File",
+            "type": "lldb",
+            "request": "launch",
+            "preLaunchTask": "Build using Clang (Debug)",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "envFile": "${fileDirname}/../../.env",
             "cwd":"${fileDirname}"

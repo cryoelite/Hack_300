@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-vpii result{};
+vi result{};
 
 void start() {
   // INPUT(testCases);
@@ -183,7 +183,7 @@ void start() {
 void initialize() {
   cin >> n;
   arr = vi(n, 0);
-  result = vpii(); // no real reason to be vpii, could just be vi, but eh.
+  result = vi(2 * n, 0);
   ARR_INT_INPUT(arr, n);
 }
 
@@ -205,6 +205,10 @@ void merge(int a_start, int mid, int b_end, vi &arr, vi &temp, int temp_index) {
   for (int i{b}; i < b_end; ++i) {
     temp[j++] = arr[i];
   }
+
+  for (int i{a_start}, j{temp_index}; i < b_end; ++i, ++j) {
+    arr[i] = temp[j];
+  }
 }
 
 void merge_sort(int start_index, int end_index, vector<int> &arr) {
@@ -213,7 +217,7 @@ void merge_sort(int start_index, int end_index, vector<int> &arr) {
   vi temp{vi(n, 0)};
 
   // sorting for each value of m, which grows with the power of 2.
-  for (int m{1}; m <= n; m *= 2) {
+  for (int m{1}; m < n; m *= 2) {
 
     // make pairs, go from start to end, jump by 2m, 2m because m would be size
     // of first block, and then m would be size of second block, making it 2m
@@ -226,26 +230,32 @@ void merge_sort(int start_index, int end_index, vector<int> &arr) {
       merge(a_start, mid, b_end, arr, temp, temp_index);
     }
   }
-  cout << "Temp: \n";
-  for (int i : temp) {
-    cout << i << "\n";
-  }
 
   swap_ranges(temp.begin(), temp.end(), arr.begin() + start_index);
 }
 
 void compute() {
   merge_sort(0, static_cast<int>(arr.size()) - 1, arr);
-  cout << "Arr: \n";
-  for (int i : arr) {
-    cout << i << "\n";
+  int min_diff{numeric_limits<int>::max()};
+  for (int i{1}; i < n; ++i) {
+    min_diff = min(arr[i] - arr[i - 1], min_diff);
+  }
+
+  for (int i{1}, j{}; i < n; ++i) {
+    if (arr[i] - arr[i - 1] == min_diff) {
+      result[j++] = arr[i - 1];
+      result[j++] = arr[i];
+    }
   }
 }
 
 void output() {
-  for (pii &elem : result) {
-    cout << elem.first << " " << elem.second << " ";
+  int i{0};
+  while (result[i] != 0) {
+    cout << result[i] << " ";
+    ++i;
   }
+
   cout << '\n';
 }
 
