@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/insertionsort2/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260335257&usg=AOvVaw1-gYJrNMMe68Zz4j7Ovat0 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/insertionsort2/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260335257&usg=AOvVaw1-gYJrNMMe68Zz4j7Ovat0
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,25 +169,39 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
 
 void start() {
   // INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
-    output();
+    // output();     MODIFIED
   }
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}, j{}; i < n-1; ++i) {
+    if (arr[i] > arr[i + 1]) {
+      j = i;
+      while (arr[j] > arr[j + 1] && j>=0) {
+        swap(arr[j], arr[j + 1]);
+        --j;
+      }
+    }
+    output();
+  }
+}
 
 void output() {
-  cout << result;
+  for (int elem : arr) {
+    cout << elem << ' ';
+  }
   cout << '\n';
 }
 

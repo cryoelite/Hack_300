@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/insertionsort1/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260333581&usg=AOvVaw38VUwwlP11O797CqBJzM5C 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/insertionsort1/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260333581&usg=AOvVaw38VUwwlP11O797CqBJzM5C
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -169,25 +169,45 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
 
 void start() {
   // INPUT(testCases);
   while (testCases-- > 0) {
     initialize();
     compute();
-    output();
+    // output();                                                     MODIFIED
   }
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  int unsorted_elem_index{0}; // given there'd be one
+  for (int i{1}; i < n; ++i) {
+    if (arr[i] < arr[i - 1]) {
+      unsorted_elem_index = i;
+      break;
+    }
+  }
+  for (int i{unsorted_elem_index - 1}, copy_elem{}; i >= 0; --i) {
+    if (arr[i] > arr[i + 1]) {
+      copy_elem = arr[i+1];
+      arr[i+1] = arr[i];
+      output();
+      arr[i] = copy_elem; //smaller value, goes in the left
+    }
+  }
+  output();
+}
 
 void output() {
-  cout << result;
+  for (int elem : arr) {
+    cout << elem << ' ';
+  }
   cout << '\n';
 }
 

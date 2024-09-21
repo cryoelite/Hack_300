@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/beautiful-days-at-the-movies?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260326262&usg=AOvVaw32KyOdJgUdvyFGN1xeZIa_ 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/beautiful-days-at-the-movies?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260326262&usg=AOvVaw32KyOdJgUdvyFGN1xeZIa_
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,8 +167,9 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
+int i_day{};
+int j_day{};
+int k{};
 int result{};
 
 void start() {
@@ -181,10 +182,26 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> i_day >> j_day >> k;
+  result = 0;
 }
 
-void compute() {  }
+int reverse_num(int num) {
+  int reverse{0};
+  while (num > 0) {
+    reverse = (reverse * 10) + (num % 10);
+    num /= 10;
+  }
+  return reverse;
+}
+
+void compute() {
+  for (int i{i_day}; i <= j_day; ++i) {
+    if ((i - reverse_num(i)) % k == 0) {
+      ++result;
+    }
+  }
+}
 
 void output() {
   cout << result;

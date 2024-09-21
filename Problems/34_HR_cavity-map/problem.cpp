@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cavity-map?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260330182&usg=AOvVaw0wAucaUo7ypyzgE_Ler-VO 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/cavity-map?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260330182&usg=AOvVaw0wAucaUo7ypyzgE_Ler-VO
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -12,7 +12,9 @@
 #include <fstream>
 #include <functional>
 #include <iomanip>
+#include <ios>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -168,8 +170,8 @@ void output();
 int testCases{1};
 
 int n{};
-vi arr{};
-int result{};
+vvi arr{};
+vvi result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +183,42 @@ void start() {
 }
 
 void initialize() {
+  cin >> n;
+  arr = vvi(n, vi(n, 0));
+  string arg{};
+  for (int i{}; i < n; ++i) {
+    cin >> arg; // works here since there wont be any whitespace, cin stops at
+                // whitespace or newline which is why its not used with strings.
 
+    for (int j{}; j < n; ++j) {
+      arr[i][j] = stoi(arg.substr(j, 1));
+    }
+  }
+  result = arr;
 }
 
-void compute() {  }
+void compute() {
+  for (int i{1}; i < n - 1; ++i) {
+    for (int j{1}; j < n - 1; ++j) {
+      int &p{arr[i][j]};
+      int &up{arr[i - 1][j]};
+      int &left{arr[i][j - 1]};
+      int &down{arr[i + 1][j]};
+      int &right{arr[i][j + 1]};
+      if (p >= up && p >= left && p >= right && p >= down) {
+        result[i][j] = -1;
+      }
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  for (int i{}; i < n; ++i) {
+    for (int j{}; j < n; ++j) {
+      cout << (result[i][j] == -1 ? "X" : to_string(result[i][j]));
+    }
+    cout << '\n';
+  }
   cout << '\n';
 }
 

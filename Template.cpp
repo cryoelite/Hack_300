@@ -119,8 +119,8 @@ bool isLocalMode() {
 
     if (file.is_open()) {
       // Env var file isn't already open
-      std::string envVar{std::istreambuf_iterator<char>(file),
-                         std::istreambuf_iterator<char>()};
+      std::string envVar{};
+      std::getline(file, envVar, '=');
       // Env variable retrieved
 
       char *envVarValue{std::getenv(envVar.c_str())};
@@ -136,8 +136,6 @@ bool isLocalMode() {
 }
 
 void setupIO() {
-  IOS;
-
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -152,6 +150,7 @@ void setupIO() {
     freopen("output.txt", "w", stdout);
 #endif
   }
+  IOS;
 }
 
 } // namespace SetupEnvironment
@@ -180,11 +179,9 @@ void start() {
   }
 }
 
-void initialize() {
+void initialize() {}
 
-}
-
-void compute() {  }
+void compute() {}
 
 void output() {
   cout << result;

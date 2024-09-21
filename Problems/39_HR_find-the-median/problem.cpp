@@ -181,10 +181,15 @@ void start() {
 }
 
 void initialize() {
-
+cin>>n;
+arr=vi(n, 0);
+ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() { 
+    sort(arr.begin(),arr.end());
+    result=arr[static_cast<int>(n/2)];
+}
 
 void output() {
   cout << result;

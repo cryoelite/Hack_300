@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/runningtime/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260336922&usg=AOvVaw2v6O4CI_EsecXdWzGECYYs 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/runningtime/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260336922&usg=AOvVaw2v6O4CI_EsecXdWzGECYYs
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -181,10 +181,24 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  result = 0;
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  for (int i{}, j{}; i < n - 1; ++i) {
+    if (arr[i] > arr[i + 1]) {
+      j = i;
+      while (arr[j] > arr[j + 1] && j >= 0) {
+        swap(arr[j], arr[j + 1]);
+        --j;
+        ++result;
+      }
+    }
+  }
+}
 
 void output() {
   cout << result;

@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/closest-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260339434&usg=AOvVaw3bT6m7kSrUSRcaTWhz0Y7s 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/closest-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260339434&usg=AOvVaw3bT6m7kSrUSRcaTWhz0Y7s
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -6,6 +6,7 @@
 // Headers
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <complex>
 #include <cstdlib>
 #include <filesystem>
@@ -13,6 +14,8 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -116,15 +119,13 @@ bool isLocalMode() {
   std::ifstream file(envFilePath, std::ios::in | std::ios::binary);
   if (file.good()) {
     // Env var file exists
-
     if (file.is_open()) {
       // Env var file isn't already open
-      std::string envVar{std::istreambuf_iterator<char>(file),
-                         std::istreambuf_iterator<char>()};
+      std::string envVar{};
+      std::getline(file, envVar, '=');
       // Env variable retrieved
 
       char *envVarValue{std::getenv(envVar.c_str())};
-
       if (envVarValue != nullptr) {
         // Env var exists, now checking if it is true
         return envVarValue == std::string("true");
@@ -136,8 +137,6 @@ bool isLocalMode() {
 }
 
 void setupIO() {
-  IOS;
-
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -152,6 +151,7 @@ void setupIO() {
     freopen("output.txt", "w", stdout);
 #endif
   }
+  IOS;
 }
 
 } // namespace SetupEnvironment
@@ -169,7 +169,7 @@ int testCases{1};
 
 int n{};
 vi arr{};
-int result{};
+vpii result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,22 +181,78 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  arr = vi(n, 0);
+  result = vpii(); // no real reason to be vpii, could just be vi, but eh.
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void merge(int a_start, int mid, int b_end, vi &arr, vi &temp, int temp_index) {
+  int a{a_start}, b{mid}, j{temp_index};
+  while (a < mid && b < b_end) {
+    if (arr[a] < arr[b]) {
+      temp[j] = arr[a];
+      ++a;
+    } else {
+      temp[j] = arr[b];
+      ++b;
+    }
+    ++j;
+  }
+  for (int i{a}; i < mid; ++i) {
+    temp[j++] = arr[i];
+  }
+  for (int i{b}; i < b_end; ++i) {
+    temp[j++] = arr[i];
+  }
+}
+
+void merge_sort(int start_index, int end_index, vector<int> &arr) {
+  // Assuming start_index<end_index and both < arr.size()
+  int n{end_index - start_index + 1};
+  vi temp{vi(n, 0)};
+
+  // sorting for each value of m, which grows with the power of 2.
+  for (int m{1}; m <= n; m *= 2) {
+
+    // make pairs, go from start to end, jump by 2m, 2m because m would be size
+    // of first block, and then m would be size of second block, making it 2m
+    for (int i{start_index}, temp_index{0}; i < end_index;
+         i += 2 * m, temp_index += 2 * m) {
+      int a_start{i};
+      int mid{a_start + m};
+      int b_end{min(mid + m, end_index + 1)};
+
+      merge(a_start, mid, b_end, arr, temp, temp_index);
+    }
+  }
+  cout << "Temp: \n";
+  for (int i : temp) {
+    cout << i << "\n";
+  }
+
+  swap_ranges(temp.begin(), temp.end(), arr.begin() + start_index);
+}
+
+void compute() {
+  merge_sort(0, static_cast<int>(arr.size()) - 1, arr);
+  cout << "Arr: \n";
+  for (int i : arr) {
+    cout << i << "\n";
+  }
+}
 
 void output() {
-  cout << result;
+  for (pii &elem : result) {
+    cout << elem.first << " " << elem.second << " ";
+  }
   cout << '\n';
 }
 
 } // namespace Solution
-
 #define SOLVE                                                                  \
   SetupEnvironment::setupIO();                                                 \
   Solution::start();
-
 signed main() {
 
   SOLVE;

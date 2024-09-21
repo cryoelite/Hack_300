@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/tutorial-intro/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260331852&usg=AOvVaw26Lu7j6EszYsm3Ax4_tfLa 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/tutorial-intro/problem?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260331852&usg=AOvVaw26Lu7j6EszYsm3Ax4_tfLa
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -13,6 +13,7 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <memory>
 #include <numeric>
@@ -168,6 +169,7 @@ void output();
 int testCases{1};
 
 int n{};
+int v{};
 vi arr{};
 int result{};
 
@@ -181,10 +183,15 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> v;
+  cin >> n;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
 }
 
-void compute() {  }
+void compute() {
+  result = distance(arr.begin(), find(arr.begin(), arr.end(), v));
+}
 
 void output() {
   cout << result;

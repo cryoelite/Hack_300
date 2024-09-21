@@ -1,4 +1,4 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kaprekar-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260328191&usg=AOvVaw2LyO9mcTo16ulE7sPjdfas 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/kaprekar-numbers?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260328191&usg=AOvVaw2LyO9mcTo16ulE7sPjdfas
 
 // Force Local Mode
 // #define ForceLOCAL
@@ -167,9 +167,9 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+int p{};
+int q{};
+vi result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,13 +181,45 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> p;
+  cin >> q;
+  result = vi();
 }
 
-void compute() {  }
+bool isKaprekar(int n) {
+  int n_sq{n * n};
+  int d{static_cast<int>(floor(log10(n)) + 1)};
+  string s{to_string(n_sq)};
+  int d_s{static_cast<int>(s.size())};
+
+  string start_digts{s.substr(0, d_s - d)};
+  string end_digits{s.substr(d_s - d)};
+
+  int sum{0};
+  if (d_s == 1) {
+    sum = stoi(end_digits);
+  } else {
+    sum = stoi(start_digts) + stoi(end_digits);
+  }
+  return sum == n;
+}
+
+void compute() {
+  for (int i{p}; i <= q; ++i) {
+    if (isKaprekar(i)) {
+      result.push_back(i);
+    }
+  }
+}
 
 void output() {
-  cout << result;
+  if (result.size() == 0) {
+    cout << "INVALID RANGE";
+  } else {
+    for (int &elem : result) {
+      cout << elem << ' ';
+    }
+  }
   cout << '\n';
 }
 
