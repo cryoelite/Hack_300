@@ -235,7 +235,8 @@ void merge_sort(int start_index, int end_index, vector<int> &arr) {
 }
 
 void compute() {
-  merge_sort(0, static_cast<int>(arr.size()) - 1, arr);
+   merge_sort(0, n - 1, arr);
+  //sort(arr.begin(), arr.end());
   int min_diff{numeric_limits<int>::max()};
   for (int i{1}; i < n; ++i) {
     min_diff = min(arr[i] - arr[i - 1], min_diff);
