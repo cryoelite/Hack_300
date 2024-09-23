@@ -1,5 +1,36 @@
 // https://www.google.com/url?q=https://www.hackerrank.com/challenges/mark-and-toys?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260340646&usg=AOvVaw3P796hdgsWONaUzZBG_1R7 
 
+/*
+Has to buy toys
+Input
+> Prices: Array
+> k (Budget): Int
+
+Find
+The maximum sized set of elements of prices that produce sum k
+
+Constraints:
+A toy can't be bought multiple times.
+n >=1 and <=10^5
+k >=1 and <=10^9
+prices[i] >=1 and <=10^9
+
+Unsorted
+Do we need to sort the input ?
+
+For every element i, we can either take/skip
+if we take prices[i], we have to then find the elements that fit for the budget k-prices[i]
+if we skip prices[i], we can only move ahead and repeat the relation.
+
+Base cases:
+if prices[i] > k then we can only skip
+if prices array is over and we still have some budget, then we cannot do anything and stop with our set.
+Set can be potentially empty since we can skip all the elements.
+
+
+
+*/
+
 // Force Local Mode
 // #define ForceLOCAL
 
