@@ -35,33 +35,36 @@ Set can be potentially empty since we can skip all the elements.
 // #define ForceLOCAL
 
 // Headers
+
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <vector>
+/*
 #include <algorithm>
 #include <array>
 #include <complex>
-#include <cstdlib>
 #include <filesystem>
-#include <fstream>
 #include <functional>
 #include <iomanip>
-#include <iostream>
+#include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
 #include <queue>
 #include <set>
 #include <stack>
-#include <stdio.h>
-#include <string>
 #include <string_view>
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
-#include <vector>
 
-namespace Definitions
+*/
 
-{
-// Defines
+namespace Definitions {
+
 #define int long long
 #define double long double
 #define LOG(x) static_cast<int>(std::floor(std::log2(x)))
@@ -69,11 +72,11 @@ namespace Definitions
   std::ios_base::sync_with_stdio(false);                                       \
   std::cin.tie(0);                                                             \
   std::cout.tie(0);
-template <typename... T> void INPUT(T &...args) { ((std::cin >> args), ...); }
-template <typename... T> void OUTPUT(T &...args) {
+/* template <typename... T> void INPUT(T &...args) { ((std::cin >> args), ...);
+} template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
-}
+} */
 #define ARR_INT_INPUT(arr, n)                                                  \
   for (int i{0}, arg{}; i < n; ++i) {                                          \
     std::cin >> arg;                                                           \
@@ -81,23 +84,27 @@ template <typename... T> void OUTPUT(T &...args) {
   }
 
 #define cast(i) static_cast<int>(i)
-#define intmax std::numeric_limits<int>::max()
-#define intmin std::numeric_limits<int>::min()
-#define pb push_back
 #define X real()
 #define Y imag()
 #define tiii std::tuple<int, int, int>
 #define mmi std::make_move_iterator
+} // namespace Definitions
 
-// Constants
+namespace Constants {
+/* using namespace Definitions;
 constexpr int cmod10_e9_7{1000000007}; // const mod 10e9^7
 constexpr int cIN{200005};             // const N (fits in int)
 constexpr int cLN{1000005};            // const long N(fits in long long)
-
-// Type Aliases
-using usi = std::unordered_set<int>;
-using umii = std::unordered_map<int, int>;
+constexpr int intmax{std::numeric_limits<int>::max()};
+constexpr int intmin{std::numeric_limits<int>::min()}; */
+} // namespace Constants
+ 
+namespace Type_Aliases {
+using namespace Definitions;
 using vi = std::vector<int>;
+/* using usi = std::unordered_set<int>;
+using umii = std::unordered_map<int, int>;
+
 using si = std::set<int>;
 using sd = std::set<double>;
 using vvi = std::vector<vi>;
@@ -133,10 +140,10 @@ using pci = std::pair<CI, CI>;
 using vpcd = std::vector<pcd>;
 using vpci = std::vector<pci>;
 using vs = std::vector<std::string_view>;
+using viit= std::vector<int>::iterator; */
+} // namespace Type_Aliases
 
-} // namespace Definitions
-
-namespace SetupEnvironment {
+namespace Environment {
 using namespace Definitions;
 
 bool isLocalMode() {
@@ -150,8 +157,8 @@ bool isLocalMode() {
 
     if (file.is_open()) {
       // Env var file isn't already open
-      std::string envVar{std::istreambuf_iterator<char>(file),
-                         std::istreambuf_iterator<char>()};
+      std::string envVar{};
+      std::getline(file, envVar, '=');
       // Env variable retrieved
 
       char *envVarValue{std::getenv(envVar.c_str())};
@@ -167,8 +174,6 @@ bool isLocalMode() {
 }
 
 void setupIO() {
-  IOS;
-
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -183,13 +188,16 @@ void setupIO() {
     freopen("output.txt", "w", stdout);
 #endif
   }
+  IOS;
 }
 
-} // namespace SetupEnvironment
+} // namespace Environment
 
 namespace Solution {
 using namespace Definitions;
-using namespace SetupEnvironment;
+using namespace Environment;
+using namespace Constants;
+using namespace Type_Aliases;
 using namespace std;
 void start();
 void initialize();
@@ -211,11 +219,9 @@ void start() {
   }
 }
 
-void initialize() {
+void initialize() {}
 
-}
-
-void compute() {  }
+void compute() {}
 
 void output() {
   cout << result;
@@ -225,7 +231,7 @@ void output() {
 } // namespace Solution
 
 #define SOLVE                                                                  \
-  SetupEnvironment::setupIO();                                                 \
+  Environment::setupIO();                                                      \
   Solution::start();
 
 signed main() {
