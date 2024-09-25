@@ -105,7 +105,7 @@ using pci = std::pair<CI, CI>;
 using vpcd = std::vector<pcd>;
 using vpci = std::vector<pci>;
 using vs = std::vector<std::string_view>;
-using viit= std::vector<int>::iterator;
+using viit = std::vector<int>::iterator;
 
 } // namespace Definitions
 
@@ -234,7 +234,7 @@ void merge_sort(viit start, viit end) {
 }
 
 void compute() {
-  merge_sort(arr.begin(),arr.end());
+  merge_sort(arr.begin(), arr.end());
   int min_diff{numeric_limits<int>::max()};
   for (int i{1}; i < n; ++i) {
     min_diff = min(arr[i] - arr[i - 1], min_diff);

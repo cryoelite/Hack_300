@@ -1,18 +1,18 @@
-// https://leetcode.com/problems/contains-duplicate/description/
+// <url>
 
 // Force Local Mode
 // #define ForceLOCAL
 
 // Headers
-
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <vector>
+
 /*
-#include <algorithm>
 #include <array>
 #include <complex>
 #include <filesystem>
@@ -33,10 +33,6 @@
 */
 
 namespace Definitions {
-
-#define int long long
-#define double long double
-#define LOG(x) static_cast<int>(std::floor(std::log2(x)))
 #define IOS                                                                    \
   std::ios_base::sync_with_stdio(false);                                       \
   std::cin.tie(0);                                                             \
@@ -46,17 +42,15 @@ namespace Definitions {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 } */
-#define ARR_INT_INPUT(arr, n)                                                  \
-  for (int i{0}, arg{}; i < n; ++i) {                                          \
-    std::cin >> arg;                                                           \
-    arr[i] = arg;                                                              \
+template <typename T, typename X> void ARR_INT_INPUT(T &arr, X &n) {
+  X arg{};
+  for (X i{0}; i < n; ++i) {
+    std::cin >> arg;
+    arr[i] = arg;
   }
-
-#define cast(i) static_cast<int>(i)
+}
 #define X real()
 #define Y imag()
-#define tiii std::tuple<int, int, int>
-#define mmi std::make_move_iterator
 } // namespace Definitions
 
 namespace Constants {
@@ -67,10 +61,12 @@ constexpr int cLN{1000005};            // const long N(fits in long long)
 constexpr int intmax{std::numeric_limits<int>::max()};
 constexpr int intmin{std::numeric_limits<int>::min()}; */
 } // namespace Constants
- 
+
 namespace Type_Aliases {
 using namespace Definitions;
+using li = long long int;
 using vi = std::vector<int>;
+using vli = std::vector<li>;
 /* using usi = std::unordered_set<int>;
 using umii = std::unordered_map<int, int>;
 
@@ -162,7 +158,7 @@ void setupIO() {
 
 } // namespace Environment
 
-namespace Solution {
+namespace Solution_LOCAL {
 using namespace Definitions;
 using namespace Environment;
 using namespace Constants;
@@ -173,11 +169,11 @@ void initialize();
 void compute();
 void output();
 
-int testCases{1};
+li testCases{1};
 
-int n{};
+li n{};
 vi arr{};
-int result{};
+bool result{};
 
 void start() {
   // INPUT(testCases);
@@ -190,22 +186,49 @@ void start() {
 
 void initialize() {}
 
-void compute() {}
+void compute() {
+  sort(arr.begin(), arr.end());
+  auto it1{arr.begin()};
+  auto it2{arr.begin() + 1};
+  while (it2 != arr.end() && it1 != arr.end() && *it1 != *it2) {
+    ++it1;
+    ++it2;
+  }
+  result = !((it1 == arr.end() - 1 && it2 == arr.end()) || it1 == arr.end());
+}
 
 void output() {
   cout << result;
   cout << '\n';
 }
 
-} // namespace Solution
+} // namespace Solution_LOCAL
+
+namespace Solution_LC {
+using namespace Type_Aliases;
+using namespace std;
+using namespace Solution_LOCAL;
+class Solution {
+public:
+  bool containsDuplicate(vi &nums) {
+    arr = std::move(nums);
+    n = static_cast<int>(arr.size());
+    compute();
+    return result;
+  }
+};
+} // namespace Solution_LC
 
 #define SOLVE                                                                  \
   Environment::setupIO();                                                      \
-  Solution::start();
+  Solution_LOCAL::start();
 
-signed main() {
+/* signed main() {
 
   SOLVE;
 
   return 0;
-}
+} */
+using namespace Solution_LC;
+
+/// LC Boilerplate starts here (unmodifiable on LC, automatically inserted)

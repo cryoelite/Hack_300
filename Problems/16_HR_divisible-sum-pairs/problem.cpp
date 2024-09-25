@@ -170,6 +170,7 @@ int testCases{1};
 int n{};
 int k{};
 vi arr{};
+vi f{};
 int result{};
 
 void start() {
@@ -182,16 +183,26 @@ void start() {
 }
 
 void initialize() {
-  result = 0;
+
   cin >> n >> k;
   arr = vi(n, 0);
   ARR_INT_INPUT(arr, n);
+  result = 0;
+  f = vi(k, 0);
 }
 
-//2 pointer
 void compute() {
   for (int i{}; i < n; ++i) {
-    
+    ++f[arr[i] % k];
+  }
+
+  for (int i{0}; i < k; ++i) {
+    int value{(k - i) % k};
+    if (value > i) {
+      result += f[value] * f[i];
+    } else if (value == i) {
+      result += (f[value] * (f[value] - 1) / 2);
+    }
   }
 }
 

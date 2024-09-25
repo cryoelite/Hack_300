@@ -1,10 +1,17 @@
+#include <algorithm>
+#include <chrono>
+#include <cmath>
 #include <iostream>
+#include <limits>
 #include <vector>
-#define int long long
+
 signed main() {
   using namespace std;
+  vector<int> arr{0,4,3,0};
+  int target{0};
+  cout<<"Yo "<<'\n';
+  cout<<log10(numeric_limits<int>::max());
 
-  cout << sizeof(vector<int>::iterator&) << " and " << sizeof(int);
   cout << endl;
   return 0;
 }

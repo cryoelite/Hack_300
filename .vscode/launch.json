@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "Build using Clang (Release)",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "envFile": "${fileDirname}/../../.env",
+            "envFile": "${workspaceFolderBasename}/.env",
             "cwd":"${fileDirname}"
         },
         {
@@ -19,7 +19,7 @@
             "request": "launch",
             "preLaunchTask": "Build using Clang (Debug)",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "envFile": "${fileDirname}/../../.env",
+            "envFile": "${workspaceFolderBasename}/.env",
             "cwd":"${fileDirname}"
         }
     ]
