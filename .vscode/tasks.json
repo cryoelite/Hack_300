@@ -9,6 +9,7 @@
             "command": "clang++",
             "args": [
                 "-O2",
+                "-v",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",  
                 "${file}",                   
@@ -27,6 +28,7 @@
             "command": "clang++",
             "args": [
                 "-g",
+                "-v",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",  
                 "${file}",                   
