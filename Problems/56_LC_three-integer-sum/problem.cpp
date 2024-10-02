@@ -1,4 +1,4 @@
-// https://neetcode.io/problems/two-integer-sum-ii
+// https://neetcode.io/problems/three-integer-sum
 
 // Force Local Mode, I can only use this on LC (at the moment)
 // #define ForceLOCAL
@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+
 
 namespace Definitions {
 #define IOS                                                                    \
@@ -113,8 +114,7 @@ int testCases{1};
 
 size_t n{};
 vi arr{};
-int target{};
-vi result{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -125,34 +125,12 @@ void start() {
   }
 }
 
-void initialize() {
-  arr = {1, 2, 3, 4};
-  target = 3;
-}
+void initialize() {}
 
-void compute() {
-  n = arr.size();
-  result = vi(2, 0);
-  size_t ptr1{0};
-  size_t ptr2{n - 1};
-
-  while (ptr1 < ptr2) {
-    if (arr[ptr1] + arr[ptr2] == target) {
-      result[0] = ptr1 + 1;
-      result[1] = ptr2 + 1;
-      break;
-    } else if (arr[ptr1] + arr[ptr2] < target) {
-      ++ptr1;
-    } else { // sum is greater than target.
-      --ptr2;
-    }
-  }
-}
+void compute() {}
 
 void output() {
-  for (int elem : result) {
-    cout << elem << ' ';
-  }
+  cout << result;
   cout << '\n';
 }
 
@@ -164,13 +142,8 @@ using namespace std;
 using namespace Solution_LOCAL;
 class Solution {
 public:
-  vector<int> twoSum(vector<int> &numbers, int target) {
-    Solution_LOCAL::arr = std::move(numbers);
-    Solution_LOCAL::target = std::move(target);
-    compute();
-
-    return result;
-  }
+  /// Their Methods GO here
+  // Set up Solution Local and call its compute from here.
 };
 } // namespace Solution_LC
 
@@ -179,12 +152,12 @@ public:
   Solution_LOCAL::start();
 
 #ifdef ForceLOCAL
-signed main() {
+ signed main() {
 
   SOLVE;
 
   return 0;
-}
+} 
 
 #endif
 using namespace Solution_LC;
