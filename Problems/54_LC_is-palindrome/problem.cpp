@@ -1,4 +1,4 @@
-// <url>
+// https://neetcode.io/problems/is-palindrome
 
 // Force Local Mode, I can only use this on LC (at the moment)
 // #define ForceLOCAL

@@ -1,16 +1,17 @@
-// <url>
+// https://neetcode.io/problems/valid-sudoku
 
 // Force Local Mode, I can only use this on LC (at the moment)
 // #define ForceLOCAL
 
 // Headers
+#include <array>
+#include <cmath>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <vector>
-
 
 namespace Definitions {
 #define IOS                                                                    \
@@ -47,6 +48,45 @@ using namespace Definitions;
 using li = long long int;
 using vi = std::vector<int>;
 using vli = std::vector<li>;
+/* using usi = std::unordered_set<int>;
+using umii = std::unordered_map<int, int>;
+
+using si = std::set<int>;
+using sd = std::set<double>;
+using vvi = std::vector<vi>;
+using pivi = std::pair<int, vi>; // first is node's value and second is node's
+                                 // adjacent elements
+using pii = std::pair<int, int>;
+using vpii = std::vector<pii>; // edge list
+using vtiii = std::vector<tiii>;
+using vvtiii = std::vector<vtiii>; // adjacency list with adjacent node id, edge
+                                   // weight and an extra value.
+using vpivi = std::vector<pivi>;
+using vvpii =
+    std::vector<vpii>; // adjacency list with edge weights, the pii has first as
+                       // node id and second as the edge weight
+using mii = std::map<int, int>;
+using vmii = std::vector<mii>;
+using vb = std::vector<bool>; // vector<bool> is a special explicit definition
+                              // of vector and behaves more like a bitset than a
+                              // vector, also it is faster than array<bool>
+                              // https://stackoverflow.com/a/55762317/13036358
+using vvb = std::vector<vb>;
+using ri = std::reverse_iterator<vi::iterator>;
+using ski = std::stack<int>;
+using CD = std::complex<double>;
+using CI = std::complex<int>; // DEPRECATED
+using pqd = std::priority_queue<double>;
+using pqi = std::priority_queue<int>;
+using pqpii = std::priority_queue<pii>;
+using vcd = std::vector<CD>;
+using vci = std::vector<CI>;
+using pcd = std::pair<CD, CD>;
+using pci = std::pair<CI, CI>;
+using vpcd = std::vector<pcd>;
+using vpci = std::vector<pci>;
+using vs = std::vector<std::string_view>;
+using viit= std::vector<int>::iterator; */
 } // namespace Type_Aliases
 
 namespace Environment {
@@ -110,11 +150,12 @@ void initialize();
 void compute();
 void output();
 
-int testCases{1};
+li testCases{1};
 
-size_t n{};
-vi arr{};
-int result{};
+constexpr size_t N{9};
+vector<vector<char>> board{};
+array<int, N + 1> count{};
+bool result{};
 
 void start() {
   // INPUT(testCases);
@@ -127,7 +168,55 @@ void start() {
 
 void initialize() {}
 
-void compute() {}
+void compute() {
+  result = false;
+  count = {};
+
+  for (size_t i{0}; i < N; ++i) {
+    for (size_t j{0}; j < N; ++j) { // checking rows
+      int value{board[i][j] - '0'};
+      if (value > 0 && ++count[value] > 1) {
+        result = false;
+        return;
+      }
+    }
+    count = {};
+  }
+
+  for (size_t i{0}; i < N; ++i) {
+    for (size_t j{0}; j < N; ++j) { // checking columns
+      int value{board[j][i] - '0'};
+      if (value > 0 && ++count[value] > 1) {
+        result = false;
+        return;
+      }
+    }
+    count = {};
+  }
+
+  const size_t block_size{3};
+  const size_t blocks{static_cast<size_t>(floor(N / block_size))};
+
+  for (size_t block_x{0}; block_x < blocks; ++block_x) {
+    for (size_t block_y{0}; block_y < blocks; ++block_y) {
+      size_t i_end{(block_x * blocks) + block_size};
+      size_t j_end{(block_y * blocks) + block_size};
+
+      for (size_t i{block_x * blocks}; i < i_end; ++i) {
+        for (size_t j{block_y * blocks}; j < j_end; ++j) {
+          int value{board[i][j] - '0'};
+          if (value > 0 && ++count[value] > 1) {
+            result = false;
+            return;
+          }
+        }
+      }
+      count = {};
+    }
+  }
+
+  result = true;
+}
 
 void output() {
   cout << result;
@@ -142,8 +231,12 @@ using namespace std;
 using namespace Solution_LOCAL;
 class Solution {
 public:
-  /// Their Methods GO here
-  // Set up Solution Local and call its compute from here.
+  bool isValidSudoku(vector<vector<char>> &board) {
+    Solution_LOCAL::board = std::move(board);
+    Solution_LOCAL::compute();
+
+    return Solution_LOCAL::result;
+  }
 };
 } // namespace Solution_LC
 
@@ -152,12 +245,12 @@ public:
   Solution_LOCAL::start();
 
 #ifdef ForceLOCAL
- signed main() {
+signed main() {
 
   SOLVE;
 
   return 0;
-} 
+}
 
 #endif
 using namespace Solution_LC;

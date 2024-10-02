@@ -5,22 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run File",
+            "name": "Run File without Debugging *nix",
             "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build using Clang (Release)",
+            "preLaunchTask": "Build using Clang fir *nix (Release)",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "envFile": "${workspaceFolderBasename}/.env",
-            "cwd":"${fileDirname}"
+            "cwd": "${fileDirname}",
+            "postDebugTask": "Cleanup Clang *nix",
         },
         {
-            "name": "Debug File",
+            "name": "Debug File *nix",
             "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build using Clang (Debug)",
+            "preLaunchTask": "Build using Clang for *nix (Debug)",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "envFile": "${workspaceFolderBasename}/.env",
-            "cwd":"${fileDirname}"
+            "cwd": "${fileDirname}",
+            "postDebugTask": "Cleanup Clang *nix",
         }
     ]
 }

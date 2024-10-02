@@ -47,45 +47,6 @@ using namespace Definitions;
 using li= long long int;
 using vi = std::vector<int>;
 using vli = std::vector<li>;
-/* using usi = std::unordered_set<int>;
-using umii = std::unordered_map<int, int>;
-
-using si = std::set<int>;
-using sd = std::set<double>;
-using vvi = std::vector<vi>;
-using pivi = std::pair<int, vi>; // first is node's value and second is node's
-                                 // adjacent elements
-using pii = std::pair<int, int>;
-using vpii = std::vector<pii>; // edge list
-using vtiii = std::vector<tiii>;
-using vvtiii = std::vector<vtiii>; // adjacency list with adjacent node id, edge
-                                   // weight and an extra value.
-using vpivi = std::vector<pivi>;
-using vvpii =
-    std::vector<vpii>; // adjacency list with edge weights, the pii has first as
-                       // node id and second as the edge weight
-using mii = std::map<int, int>;
-using vmii = std::vector<mii>;
-using vb = std::vector<bool>; // vector<bool> is a special explicit definition
-                              // of vector and behaves more like a bitset than a
-                              // vector, also it is faster than array<bool>
-                              // https://stackoverflow.com/a/55762317/13036358
-using vvb = std::vector<vb>;
-using ri = std::reverse_iterator<vi::iterator>;
-using ski = std::stack<int>;
-using CD = std::complex<double>;
-using CI = std::complex<int>; // DEPRECATED
-using pqd = std::priority_queue<double>;
-using pqi = std::priority_queue<int>;
-using pqpii = std::priority_queue<pii>;
-using vcd = std::vector<CD>;
-using vci = std::vector<CI>;
-using pcd = std::pair<CD, CD>;
-using pci = std::pair<CI, CI>;
-using vpcd = std::vector<pcd>;
-using vpci = std::vector<pci>;
-using vs = std::vector<std::string_view>;
-using viit= std::vector<int>::iterator; */
 } // namespace Type_Aliases
 
 namespace Environment {
@@ -149,11 +110,11 @@ void initialize();
 void compute();
 void output();
 
-li testCases{1};
+int testCases{1};
 
-li n{};
-vli arr{};
-li result{};
+size_t n{};
+vi arr{};
+int result{};
 
 void start() {
   // INPUT(testCases);

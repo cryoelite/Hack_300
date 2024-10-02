@@ -1,4 +1,4 @@
-// <url>
+// https://neetcode.io/problems/longest-consecutive-sequence
 
 // Force Local Mode, I can only use this on LC (at the moment)
 // #define ForceLOCAL
@@ -9,8 +9,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
-
 
 namespace Definitions {
 #define IOS                                                                    \
@@ -114,6 +115,7 @@ int testCases{1};
 
 size_t n{};
 vi arr{};
+unordered_set<int> set_arr{};
 int result{};
 
 void start() {
@@ -125,9 +127,39 @@ void start() {
   }
 }
 
-void initialize() {}
+void initialize() { arr = {0, 3, 2, 5, 4, 6, 1, 1}; }
 
-void compute() {}
+void compute() {
+  result = 0;
+  n = arr.size();
+  if (n == 0) {
+    return;
+  }
+  set_arr = unordered_set<int>(arr.begin(), arr.end());
+  auto it{set_arr.begin()};
+
+  int current_count{1};
+  result = 1;
+  while (set_arr.size() > 0) {
+    auto prev{set_arr.find(*it - 1)};
+    auto next{set_arr.find(*it + 1)};
+    if (prev != set_arr.end()) {
+      it = prev;
+    } else if (next != set_arr.end()) {
+      ++current_count;
+      result = max(current_count, result);
+      set_arr.erase(it);
+      it = next;
+    } else {
+      set_arr.erase(it);
+      if (set_arr.size() == 0) {
+        return;
+      }
+      it = set_arr.begin();
+      current_count = 1;
+    }
+  }
+}
 
 void output() {
   cout << result;
@@ -142,8 +174,11 @@ using namespace std;
 using namespace Solution_LOCAL;
 class Solution {
 public:
-  /// Their Methods GO here
-  // Set up Solution Local and call its compute from here.
+  int longestConsecutive(vector<int> &nums) {
+    Solution_LOCAL::arr = std::move(nums);
+    compute();
+    return result;
+  }
 };
 } // namespace Solution_LC
 
@@ -152,12 +187,12 @@ public:
   Solution_LOCAL::start();
 
 #ifdef ForceLOCAL
- signed main() {
+signed main() {
 
   SOLVE;
 
   return 0;
-} 
+}
 
 #endif
 using namespace Solution_LC;

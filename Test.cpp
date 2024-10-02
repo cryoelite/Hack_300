@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <bitset>
 #include <chrono>
 #include <cmath>
 #include <iostream>
@@ -7,10 +8,10 @@
 
 signed main() {
   using namespace std;
-  vector<int> arr{0,4,3,0};
-  int target{0};
-  cout<<"Yo "<<'\n';
-  cout<<log10(numeric_limits<int>::max());
+  int x{0};
+  x=840;
+  cout<<bitset<32>(x)<<'\n';
+  cout<<((x& (1<<7)))<<'\n';
 
   cout << endl;
   return 0;

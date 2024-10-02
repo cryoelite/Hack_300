@@ -13,9 +13,14 @@
 * Profit ✨
 
 # Optional:
-* Every ``problem.cpp`` relies on an environment variable defined in ``.env``, if the ``.env``file exists, and the environment variable in it is set with a value of true then local mode is started for the program. You can directly modify the variable in it to whatever you like or leave it as is.
+* Every ``problem.cpp`` relies on an environment variable defined in ``.env``, if the ``.env``file exists, and the environment variable in it is set with a value of `true` then local mode is started for the program. You can directly modify the variable in it to whatever you like or leave it as is. It is stored in base ``./`` relative directory as ``./.env``.
+Example ``.env`` file contents:
+```
+local_mode=true
+```
+where ``local_mode`` is the environment variable and its value is ``true``, defined with ``=``.
 * Define problem url at line 1 of a ``problem.cpp`` for easy problem statement access.
-* Use ``Test.cpp`` to quickly test out some code
+* Use ``Test.cpp`` to quickly test out some code.
 
 # Local Mode:
 * Local mode in ``problem.cpp`` simply uses ``input.txt`` and ``output.txt`` files in the problem directory for input/output. 
