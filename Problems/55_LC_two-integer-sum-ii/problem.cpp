@@ -1,16 +1,16 @@
-// https://neetcode.io/problems/is-palindrome
+// https://neetcode.io/problems/two-integer-sum-ii
 
 // Force Local Mode, I can only use this on LC (at the moment)
 // #define ForceLOCAL
 
 // Headers
-#include <cctype>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <vector>
+
 
 namespace Definitions {
 #define IOS                                                                    \
@@ -112,8 +112,9 @@ void output();
 
 int testCases{1};
 
-string s{};
-bool result;
+size_t n{};
+vi arr{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -126,33 +127,7 @@ void start() {
 
 void initialize() {}
 
-void compute() {
-  result = false;
-  auto ptr1{s.begin()};
-  auto ptr2{s.end()};
-
-  while (ptr1 < ptr2) {
-    if (!((*ptr1 >= '0' && *ptr1 <= '9') || (*ptr1 >= 'a' && *ptr1 <= 'z') ||
-          (*ptr1 >= 'A' && *ptr1 <= 'Z'))) {
-      ++ptr1;
-      continue;
-    }
-    if (!((*ptr2 >= '0' && *ptr2 <= '9') || (*ptr2 >= 'a' && *ptr2 <= 'z') ||
-          (*ptr2 >= 'A' && *ptr2 <= 'Z'))) {
-      --ptr2;
-      continue;
-    }
-    if (tolower(*ptr1) != tolower(*ptr2)) {
-      result = false;
-      return;
-    }
-
-    ++ptr1;
-    --ptr2;
-  }
-
-  result = true;
-}
+void compute() {}
 
 void output() {
   cout << result;
@@ -167,11 +142,8 @@ using namespace std;
 using namespace Solution_LOCAL;
 class Solution {
 public:
-  bool isPalindrome(string s) {
-    Solution_LOCAL::s = std::move(s);
-    Solution_LOCAL::compute();
-    return result;
-  }
+  /// Their Methods GO here
+  // Set up Solution Local and call its compute from here.
 };
 } // namespace Solution_LC
 
@@ -180,12 +152,12 @@ public:
   Solution_LOCAL::start();
 
 #ifdef ForceLOCAL
-signed main() {
+ signed main() {
 
   SOLVE;
 
   return 0;
-}
+} 
 
 #endif
 using namespace Solution_LC;
