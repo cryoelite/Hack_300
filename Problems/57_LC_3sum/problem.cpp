@@ -1,16 +1,16 @@
-// https://neetcode.io/problems/three-integer-sum
+// https://leetcode.com/problems/3sum
 
 // Force Local Mode, I can only use this on LC (at the moment)
-#define ForceLOCAL
+// #define ForceLOCAL
 
 // Headers
-#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <vector>
+
 
 namespace Definitions {
 #define IOS                                                                    \
@@ -114,7 +114,7 @@ int testCases{1};
 
 size_t n{};
 vi arr{};
-vector<vi> result{};
+int result{};
 
 void start() {
   // INPUT(testCases);
@@ -125,49 +125,12 @@ void start() {
   }
 }
 
-void initialize() { arr = {-1, 0, 1, 2, -1, -4}; }
+void initialize() {}
 
-void compute() {
-  n = arr.size();
-
-  result = vector<vi>();
-  result.reserve(n); // max n triplets
-
-  sort(arr.begin(), arr.end());
-
-  auto ptr1{arr.begin()};
-  auto ptr2{arr.end() - 1};
-  auto ptr3{arr.begin()};
-
-  while (ptr1 < ptr2 - 1) {
-    // meaning distance between ptr 1 and 2 should be of 3
-    int sum{*ptr1 + *ptr2};
-    if (sum < 0) {
-      // means that the value on the left ptr is bigger in magnitude
-      ptr3 = ptr2 - 1;
-      if (*ptr3 + sum == 0) {
-        result.emplace_back(vi({*ptr1, *ptr3, *ptr2}));
-      }
-      ++ptr1;
-
-    } else {
-      // either the sum is > or == 0
-      ptr3 = ptr1 + 1;
-      if (*ptr3 + sum == 0) {
-        result.emplace_back(vi({*ptr1, *ptr3, *ptr2}));
-      }
-      --ptr2;
-    }
-  }
-}
+void compute() {}
 
 void output() {
-  for (auto &v : result) {
-    for (int elem : v) {
-      cout << elem << " ";
-    }
-    cout << '\n';
-  }
+  cout << result;
   cout << '\n';
 }
 
@@ -179,11 +142,8 @@ using namespace std;
 using namespace Solution_LOCAL;
 class Solution {
 public:
-  vector<vector<int>> threeSum(vector<int> &nums) {
-    Solution_LOCAL::arr = std::move(nums);
-    compute();
-    return result;
-  }
+  /// Their Methods GO here
+  // Set up Solution Local and call its compute from here.
 };
 } // namespace Solution_LC
 
@@ -192,12 +152,12 @@ public:
   Solution_LOCAL::start();
 
 #ifdef ForceLOCAL
-signed main() {
+ signed main() {
 
   SOLVE;
 
   return 0;
-}
+} 
 
 #endif
 using namespace Solution_LC;
