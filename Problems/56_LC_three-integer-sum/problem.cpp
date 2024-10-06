@@ -1,7 +1,7 @@
 // https://neetcode.io/problems/three-integer-sum
 
 // Force Local Mode, I can only use this on LC (at the moment)
-#define ForceLOCAL
+// #define ForceLOCAL
 
 // Headers
 #include <algorithm>
@@ -125,7 +125,7 @@ void start() {
   }
 }
 
-void initialize() { arr = {-1, 0, 1, 2, -1, -4}; }
+void initialize() {}
 
 void compute() {
   n = arr.size();
@@ -148,15 +148,23 @@ void compute() {
       if (*ptr3 + sum == 0) {
         result.emplace_back(vi({*ptr1, *ptr3, *ptr2}));
       }
-      ++ptr1;
+      while (*ptr1 == *(++ptr1) && ptr1 < ptr2 - 1) {
+        ++ptr1;
+      }
 
     } else {
       // either the sum is > or == 0
       ptr3 = ptr1 + 1;
-      if (*ptr3 + sum == 0) {
-        result.emplace_back(vi({*ptr1, *ptr3, *ptr2}));
+      while (ptr3 < ptr2 && *ptr3 + sum <= 0) {
+        if (*ptr3 + sum == 0) {
+          result.emplace_back(vi({*ptr1, *ptr3, *ptr2}));
+          break;
+        }
+        ++ptr3;
       }
-      --ptr2;
+      while (*ptr2 == *(--ptr2) && ptr2 > ptr1 + 1) {
+        ++ptr1;
+      }
     }
   }
 }
