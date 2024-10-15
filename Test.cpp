@@ -8,9 +8,7 @@
 
 signed main() {
   using namespace std;
-
-  cout << int(' ') << " " << int('0') << '\n';
-
+  cout<< sizeof(int)<<'\n';
   cout << endl;
   return 0;
 }

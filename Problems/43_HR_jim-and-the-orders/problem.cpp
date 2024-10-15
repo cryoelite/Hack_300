@@ -1,111 +1,56 @@
-// https://www.google.com/url?q=https://www.hackerrank.com/challenges/jim-and-the-orders?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260343171&usg=AOvVaw2kZbxH1QF9YgwVkuMqCHZf 
+// https://www.google.com/url?q=https://www.hackerrank.com/challenges/jim-and-the-orders?isFullScreen%3Dtrue&sa=D&source=editors&ust=1717685260343171&usg=AOvVaw2kZbxH1QF9YgwVkuMqCHZf
 
 // Force Local Mode
 // #define ForceLOCAL
 
 // Headers
 #include <algorithm>
-#include <array>
-#include <complex>
 #include <cstdlib>
-#include <filesystem>
 #include <fstream>
-#include <functional>
-#include <iomanip>
 #include <iostream>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <stack>
 #include <stdio.h>
 #include <string>
-#include <string_view>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
+#include <utility>
 #include <vector>
 
-namespace Definitions
-
-{
-// Defines
-#define int long long
-#define double long double
-#define LOG(x) static_cast<int>(std::floor(std::log2(x)))
+namespace Definitions {
 #define IOS                                                                    \
   std::ios_base::sync_with_stdio(false);                                       \
   std::cin.tie(0);                                                             \
   std::cout.tie(0);
-template <typename... T> void INPUT(T &...args) { ((std::cin >> args), ...); }
-template <typename... T> void OUTPUT(T &...args) {
+/* template <typename... T> void INPUT(T &...args) { ((std::cin >> args), ...);
+} template <typename... T> void OUTPUT(T &...args) {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
-}
-#define ARR_INT_INPUT(arr, n)                                                  \
-  for (int i{0}, arg{}; i < n; ++i) {                                          \
-    std::cin >> arg;                                                           \
-    arr[i] = arg;                                                              \
+} */
+template <typename T, typename X> void ARR_INT_INPUT(T &arr, X &n) {
+  X arg{};
+  for (X i{0}; i < n; ++i) {
+    std::cin >> arg;
+    arr[i] = arg;
   }
-
-#define cast(i) static_cast<int>(i)
-#define intmax std::numeric_limits<int>::max()
-#define intmin std::numeric_limits<int>::min()
-#define pb push_back
+}
 #define X real()
 #define Y imag()
-#define tiii std::tuple<int, int, int>
-#define mmi std::make_move_iterator
+} // namespace Definitions
 
-// Constants
+namespace Constants {
+/* using namespace Definitions;
 constexpr int cmod10_e9_7{1000000007}; // const mod 10e9^7
 constexpr int cIN{200005};             // const N (fits in int)
 constexpr int cLN{1000005};            // const long N(fits in long long)
+constexpr int intmax{std::numeric_limits<int>::max()};
+constexpr int intmin{std::numeric_limits<int>::min()}; */
+} // namespace Constants
 
-// Type Aliases
-using usi = std::unordered_set<int>;
-using umii = std::unordered_map<int, int>;
+namespace Type_Aliases {
+using namespace Definitions;
+using li = long long int;
 using vi = std::vector<int>;
-using si = std::set<int>;
-using sd = std::set<double>;
-using vvi = std::vector<vi>;
-using pivi = std::pair<int, vi>; // first is node's value and second is node's
-                                 // adjacent elements
-using pii = std::pair<int, int>;
-using vpii = std::vector<pii>; // edge list
-using vtiii = std::vector<tiii>;
-using vvtiii = std::vector<vtiii>; // adjacency list with adjacent node id, edge
-                                   // weight and an extra value.
-using vpivi = std::vector<pivi>;
-using vvpii =
-    std::vector<vpii>; // adjacency list with edge weights, the pii has first as
-                       // node id and second as the edge weight
-using mii = std::map<int, int>;
-using vmii = std::vector<mii>;
-using vb = std::vector<bool>; // vector<bool> is a special explicit definition
-                              // of vector and behaves more like a bitset than a
-                              // vector, also it is faster than array<bool>
-                              // https://stackoverflow.com/a/55762317/13036358
-using vvb = std::vector<vb>;
-using ri = std::reverse_iterator<vi::iterator>;
-using ski = std::stack<int>;
-using CD = std::complex<double>;
-using CI = std::complex<int>; // DEPRECATED
-using pqd = std::priority_queue<double>;
-using pqi = std::priority_queue<int>;
-using pqpii = std::priority_queue<pii>;
-using vcd = std::vector<CD>;
-using vci = std::vector<CI>;
-using pcd = std::pair<CD, CD>;
-using pci = std::pair<CI, CI>;
-using vpcd = std::vector<pcd>;
-using vpci = std::vector<pci>;
-using vs = std::vector<std::string_view>;
+using vli = std::vector<li>;
+} // namespace Type_Aliases
 
-} // namespace Definitions
-
-namespace SetupEnvironment {
+namespace Environment {
 using namespace Definitions;
 
 bool isLocalMode() {
@@ -119,8 +64,8 @@ bool isLocalMode() {
 
     if (file.is_open()) {
       // Env var file isn't already open
-      std::string envVar{std::istreambuf_iterator<char>(file),
-                         std::istreambuf_iterator<char>()};
+      std::string envVar{};
+      std::getline(file, envVar, '=');
       // Env variable retrieved
 
       char *envVarValue{std::getenv(envVar.c_str())};
@@ -136,8 +81,6 @@ bool isLocalMode() {
 }
 
 void setupIO() {
-  IOS;
-
   if (isLocalMode()) {
     // I/O Stream pointed at local text files
 #ifdef freopen_s // windows
@@ -152,13 +95,16 @@ void setupIO() {
     freopen("output.txt", "w", stdout);
 #endif
   }
+  IOS;
 }
 
-} // namespace SetupEnvironment
+} // namespace Environment
 
-namespace Solution {
+namespace Solution_LOCAL {
 using namespace Definitions;
-using namespace SetupEnvironment;
+using namespace Environment;
+using namespace Constants;
+using namespace Type_Aliases;
 using namespace std;
 void start();
 void initialize();
@@ -167,9 +113,10 @@ void output();
 
 int testCases{1};
 
-int n{};
-vi arr{};
-int result{};
+size_t n{};
+vi order{};
+vi prep{};
+vector<pair<int, int>> result{};
 
 void start() {
   // INPUT(testCases);
@@ -181,21 +128,54 @@ void start() {
 }
 
 void initialize() {
-
+  cin >> n;
+  order = vi(n + 1, 0);
+  prep = vi(n + 1, 0);
+  for (size_t i{1}; i <= n; ++i) {
+    int arg1{}, arg2{};
+    cin >> arg1 >> arg2;
+    order[i] = arg1;
+    prep[i] = arg2;
+  }
+  result = vector<pair<int, int>>(n, pair<int, int>());
+}
+bool is_pair_smaller_customer_comparator(const pair<int, int> &a,
+                              const pair<int, int> &b) {
+  if (a.first < b.first) {
+    return true;
+  } else if (a.first > b.first) {
+    return false;
+  } else { // a.first == b.first
+    if (a.second <
+        b.second) { // not handling edge case a.second==b.second, which can't be
+                    // but if it is, it passes through.
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+void compute() {
+  for (size_t i{1}; i <= n; ++i) {
+    result[i - 1].first = order[i] + prep[i]; // time
+    result[i - 1].second = i;
+  }
+  sort(result.begin(), result.end(), is_pair_smaller_customer_comparator);
+  
 }
 
-void compute() {  }
-
 void output() {
-  cout << result;
+  for (auto &elem : result) {
+    cout << elem.second << ' ';
+  }
   cout << '\n';
 }
 
-} // namespace Solution
+} // namespace Solution_LOCAL
 
 #define SOLVE                                                                  \
-  SetupEnvironment::setupIO();                                                 \
-  Solution::start();
+  Environment::setupIO();                                                      \
+  Solution_LOCAL::start();
 
 signed main() {
 

@@ -9,6 +9,7 @@ problem_url=$1
 # Extract problem_domain and problem_name using sed
 problem_domain=$(echo "$problem_url" | sed -E 's|https://([^\.]+).*|\1|' | tr '[:upper:]' '[:lower:]')
 problem_name=$(echo "$problem_url" | sed -E 's|.*/problems/([^/]+)$|\1|' | tr '[:upper:]' '[:lower:]')
+#TODO: FIX the extractor, doesn't work with say https://www.hackerrank.com/challenges/mark-and-toys
 
 #Get the problem number
 current_problem_count=$(ls -l Problems/ | grep -c ^d)
@@ -26,6 +27,8 @@ echo "Problem domain: $problem_domain"
 echo "Problem domain shortcode: $problem_domain_shortcode"
 echo "Problem name: $problem_name"
 echo "Problem number: $problem_number"
+
+exit 
 
 problem_dir="Problems/${problem_number}_${problem_domain_shortcode}_${problem_name}/"
 echo "Creating problem directory: \"$problem_dir\""

@@ -1,42 +1,18 @@
-// https://leetcode.com/problems/contains-duplicate/description/
+// https://www.hackerrank.com/challenges/mark-and-toys
 
 // Force Local Mode
 // #define ForceLOCAL
 
 // Headers
-
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <stdio.h>
 #include <string>
 #include <vector>
-/*
-#include <algorithm>
-#include <array>
-#include <complex>
-#include <filesystem>
-#include <functional>
-#include <iomanip>
-#include <limits>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <stack>
-#include <string_view>
-#include <tuple>
-#include <unordered_map>
-#include <unordered_set>
-
-*/
 
 namespace Definitions {
-
-#define int long long
-#define double long double
-#define LOG(x) static_cast<int>(std::floor(std::log2(x)))
 #define IOS                                                                    \
   std::ios_base::sync_with_stdio(false);                                       \
   std::cin.tie(0);                                                             \
@@ -46,17 +22,15 @@ namespace Definitions {
   ((std::cout << args << " "), ...);
   std::cout << "\n";
 } */
-#define ARR_INT_INPUT(arr, n)                                                  \
-  for (int i{0}, arg{}; i < n; ++i) {                                          \
-    std::cin >> arg;                                                           \
-    arr[i] = arg;                                                              \
+template <typename T, typename X> void ARR_INT_INPUT(T &arr, X &n) {
+  X arg{};
+  for (X i{0}; i < n; ++i) {
+    std::cin >> arg;
+    arr[i] = arg;
   }
-
-#define cast(i) static_cast<int>(i)
+}
 #define X real()
 #define Y imag()
-#define tiii std::tuple<int, int, int>
-#define mmi std::make_move_iterator
 } // namespace Definitions
 
 namespace Constants {
@@ -67,49 +41,12 @@ constexpr int cLN{1000005};            // const long N(fits in long long)
 constexpr int intmax{std::numeric_limits<int>::max()};
 constexpr int intmin{std::numeric_limits<int>::min()}; */
 } // namespace Constants
- 
+
 namespace Type_Aliases {
 using namespace Definitions;
+using li = long long int;
 using vi = std::vector<int>;
-/* using usi = std::unordered_set<int>;
-using umii = std::unordered_map<int, int>;
-
-using si = std::set<int>;
-using sd = std::set<double>;
-using vvi = std::vector<vi>;
-using pivi = std::pair<int, vi>; // first is node's value and second is node's
-                                 // adjacent elements
-using pii = std::pair<int, int>;
-using vpii = std::vector<pii>; // edge list
-using vtiii = std::vector<tiii>;
-using vvtiii = std::vector<vtiii>; // adjacency list with adjacent node id, edge
-                                   // weight and an extra value.
-using vpivi = std::vector<pivi>;
-using vvpii =
-    std::vector<vpii>; // adjacency list with edge weights, the pii has first as
-                       // node id and second as the edge weight
-using mii = std::map<int, int>;
-using vmii = std::vector<mii>;
-using vb = std::vector<bool>; // vector<bool> is a special explicit definition
-                              // of vector and behaves more like a bitset than a
-                              // vector, also it is faster than array<bool>
-                              // https://stackoverflow.com/a/55762317/13036358
-using vvb = std::vector<vb>;
-using ri = std::reverse_iterator<vi::iterator>;
-using ski = std::stack<int>;
-using CD = std::complex<double>;
-using CI = std::complex<int>; // DEPRECATED
-using pqd = std::priority_queue<double>;
-using pqi = std::priority_queue<int>;
-using pqpii = std::priority_queue<pii>;
-using vcd = std::vector<CD>;
-using vci = std::vector<CI>;
-using pcd = std::pair<CD, CD>;
-using pci = std::pair<CI, CI>;
-using vpcd = std::vector<pcd>;
-using vpci = std::vector<pci>;
-using vs = std::vector<std::string_view>;
-using viit= std::vector<int>::iterator; */
+using vli = std::vector<li>;
 } // namespace Type_Aliases
 
 namespace Environment {
@@ -162,7 +99,7 @@ void setupIO() {
 
 } // namespace Environment
 
-namespace Solution {
+namespace Solution_LOCAL {
 using namespace Definitions;
 using namespace Environment;
 using namespace Constants;
@@ -175,7 +112,8 @@ void output();
 
 int testCases{1};
 
-int n{};
+size_t n{};
+int k{};
 vi arr{};
 int result{};
 
@@ -188,20 +126,50 @@ void start() {
   }
 }
 
-void initialize() {}
+void initialize() {
+  cin >> n >> k;
+  arr = vi(n, 0);
+  ARR_INT_INPUT(arr, n);
+  result = 1;
+}
 
-void compute() {}
+void compute() {
+  for (int i{1}; i < n; ++i) { // if size is 1, won't run.
+    if (arr[i] < arr[i - 1]) {
+      sort(arr.begin(), arr.end());
+      break;
+    }
+  }
+
+  auto ptr1{arr.begin()};
+  auto ptr2{arr.begin() + 1};
+  int c_sum{*ptr1}; // current sum
+  int c_count{1};   // current count
+  while (ptr1 < ptr2 &&
+         ptr2 < arr.end()) { // if size is 1, ptr2 is already at end, no work.
+    if (c_sum + *ptr2 <= k) {
+      c_sum += *ptr2;
+      ++c_count;
+      ++ptr2;
+      result = max(result, c_count);
+
+    } else {
+      c_count = 1;
+      ++ptr1;
+    }
+  }
+}
 
 void output() {
   cout << result;
   cout << '\n';
 }
 
-} // namespace Solution
+} // namespace Solution_LOCAL
 
 #define SOLVE                                                                  \
   Environment::setupIO();                                                      \
-  Solution::start();
+  Solution_LOCAL::start();
 
 signed main() {
 
